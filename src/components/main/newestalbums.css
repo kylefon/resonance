@@ -1,0 +1,47 @@
+.newest-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #99AABB; 
+    margin-bottom: 20px;
+}
+
+.newest-albums {
+    height: 100%;
+    width: 100%;
+    transition: border 0.1 ease;
+    box-sizing: border-box;
+}
+
+.newest-content {
+    height: 100%;
+    width: 100%;
+    display:flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.newest-albums-container {
+    position: relative;
+    height: 110px;
+    width: 110px;
+}
+
+.newest-albums-container::before {
+    content: '';
+    position: absolute;
+    top: -3px;
+    left: -3px;
+    right: -3px;
+    bottom: -3px;
+    border: 3px solid transparent;
+    transition: border-color 0.1s ease;
+    box-sizing: border-box;
+}
+
+.newest-albums-container:hover::before {
+    border-color: yellow;
+}
+

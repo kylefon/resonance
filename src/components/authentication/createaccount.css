@@ -1,0 +1,43 @@
+.create-wrapper {
+    width: 456px;
+}
+
+.input-container {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.main-create-wrapper > p {
+    font-size: 15px;
+    margin-bottom: 20px;
+    color: #99AABB;
+    width: 100%;
+    font-weight: 400;
+}
+
+.main-create-wrapper label {
+    font-size: 13px;
+    margin-bottom: 5px;
+    color: #FFFFFF;
+    width: 100%;
+    font-weight: 500;
+}
+
+.main-create-wrapper input {
+    box-sizing: border-box;
+    padding: 9px 8px;
+    background-color: #CCDDEE;
+    height: 34px;
+    width: 100%;
+    margin-bottom: 15px;
+    border-radius: 2px;
+}
+
+.submit-button {
+    display: flex;
+    align-items: center;
+    justify-content: left;
+}

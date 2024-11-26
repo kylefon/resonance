@@ -1,0 +1,20 @@
+.main-album-container {
+    display: flex;
+}
+
+.main-album-image {
+    height: 75px;
+    aspect-ratio: 1;
+    margin-right: 10px;
+    border-radius: 3px;
+}
+
+.album-review-icons {
+    font-size: 10px;
+    line-height: 16px;
+    display: flex;
+    color: #556677;
+    align-items: start;
+    gap: 3px;
+    align-items: center;
+}

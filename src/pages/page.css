@@ -1,0 +1,14 @@
+.main-content {
+    width: 950px;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 100px;
+}
+
+a, .link {
+  color: inherit; 
+}
+  
+a:visited, a:active, a:focus {
+  color: inherit; 
+}

@@ -1,0 +1,138 @@
+dialog {
+    position: absolute;
+    box-sizing: border-box;
+    padding: 22px 36px;
+    background-color: #445566;
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); 
+}
+
+.review-modal {
+    width: 808px;
+}
+  
+dialog::backdrop {
+    background: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+    display: flex;
+}
+
+.modal-content > img {
+    width: 156px;
+    height: 156px;
+    margin-right: 50px;
+    box-shadow: 0 1px 5px rgba(20, 24, 28, .2), 0 2px 10px rgba(20, 24, 28, .35);
+    border-radius: 4px;
+}
+
+header {
+    width: 100%;
+}
+
+.modal-close {
+    background: none;
+    border: none;
+    outline: none;
+    cursor: pointer; 
+    color: white;
+}
+
+.header-listen {
+    font-size: 15px;
+    margin-bottom: 15px;
+    color: #99AABB;
+}
+
+.header-name {
+    font-family: "Merriweather", serif;
+    font-size: 22px;
+    color: #FFFFFF;
+    margin-bottom: 15px;
+}
+
+textarea {
+    min-height: 90px;
+    padding: 7px 10px;
+    margin-bottom: 15px;
+    border: none;
+    width: 100%;
+}
+
+
+.modal-review-container {
+    display: flex;
+    width: 100%;
+}
+
+.rating-like {
+    display: flex;
+    gap: 35px;
+}
+
+.modal-rating > p {
+    text-align: left;
+    margin-bottom: 7px;
+    font-size: 13px;
+    color: #FFFFFF
+}
+
+.modal-like {
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+}
+
+.like > p {
+    margin-bottom: 7px;
+    text-align: center;
+    font-size: 13px;
+    color: #FFFFFF
+}
+
+.like-radio {
+    display: none;
+}
+
+.heart-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.submit-button {
+    display: flex;
+    align-items: right;
+    justify-content: right;
+}
+
+.submit-button > button {
+    background-color: #00AC1C;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    color: #f4fcf0;
+    padding: 9px 12px 8px;
+    font-weight: 900;
+    border-radius: 3px;
+}
+
+
+.modal-close {
+    position: absolute;
+    right: 0;
+    top: 0;
+    font-size: 24px;
+    margin: 22px;
+}
+
+.review-form {
+    width: 100%;
+}
+

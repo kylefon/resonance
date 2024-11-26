@@ -1,0 +1,83 @@
+
+.searched-results-container {
+    display: flex;
+    gap: 40px;
+    margin-top: 30px;
+    width: 100%;
+}
+
+.searched-results {
+    flex: 8;
+}
+.searched-filter {
+    flex: 2;
+}
+
+.search-item {
+    padding: 15px 0px;
+    border-bottom: 1px solid #99AABB; 
+    display: flex;  
+}
+
+.artist-content {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 10px;
+    color: #99AABB;
+}
+
+.artist-content span {
+    display: flex;
+    align-items: end;
+}
+
+.search-image {
+    margin-right: 15px;
+    width: 200px;
+}
+
+.search-name {
+    font-size: 22px;
+    color: #FFFFFF;
+    margin-right: 5px;
+    margin-bottom: 10px;
+    font-family: "Merriweather", serif;
+    font-weight: 900;
+}
+
+.search-link {
+    text-decoration: none;
+}
+
+.result-filter-li {
+    color: #99AABB;
+    padding: 5px 10px;
+    font-size: 13px;
+}
+
+.result-filter-li.active {
+    color: #FFFFFF;
+    padding: 5px 10px;
+    font-size: 13px;
+    background-color: #2C3440;
+}
+
+.users-search-image {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.users-search-username {
+    font-size: 18px;
+    color: #FFFFFF;
+}
+
+.user-search-container {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    gap: 30px;
+    border-bottom: 1px solid #99AABB; 
+}

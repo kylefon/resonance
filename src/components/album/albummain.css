@@ -1,0 +1,67 @@
+.album-section-wrapper {
+    width: 950px;
+    padding-top: 60px;
+}
+
+.album-main-container {
+    display: flex;
+    width: 100%;
+    margin-bottom: 64px;
+}
+
+.album-info-section {
+    width: 100%;
+}
+
+.album-image {
+    width: 460px;
+    border-radius: 5px;
+    margin-right: 50px;
+}
+
+.album-name {
+    font-size: 37px;
+    font-family: "Merriweather", serif;
+    font-weight: 900;
+    color: #FFFFFF;
+}
+
+.album-artists {
+    font-size: 22px;
+    color: #99AABB;
+}
+
+.album-tracks {
+    margin-top: 35px;
+}
+
+.track-title {
+    font-size: 20px;
+    color: #FFFFFF;
+    padding-bottom: 5px;
+    border-bottom: 3px solid #FFFFFF;
+    margin-bottom: 10px;
+}
+
+.track-name {
+    font-size: 12px;
+    color: #99AABB;
+    padding: 10px 0px;
+    border-bottom: 1px solid #99AABB;
+}
+
+.album-reviews-container {
+    padding: 20px;
+}
+
+.album-review-popular,
+.album-review-recent,
+.album-review-artists {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #99AABB; 
+    margin-bottom: 64px;
+}

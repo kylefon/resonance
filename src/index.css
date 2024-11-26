@@ -1,0 +1,16 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100%;
+  background: #14181c url(https://s.ltrbxd.com/static/img/content-bg.4284ab72.png) 0 -1px repeat-x;
+  font-family: "Open Sans", sans-serif;
+  letter-spacing: 1.5px;
+
+}
+
+#root {
+  height: 100%;
+}

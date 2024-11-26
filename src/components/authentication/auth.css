@@ -1,0 +1,61 @@
+.auth-container {
+    display: flex;
+    gap: 15px;
+    align-items: end;
+}
+
+.cancel-auth-button {
+    border: none;
+    outline: none;
+    cursor: pointer;
+    color: #334455;
+    background-color: transparent;
+    font-size: 20px;
+}
+
+.form-container {
+    display: flex;
+    gap: 15px;
+    align-items: end; 
+}
+
+.modal-button:hover {
+    color: white;
+}
+
+.form-container .submit-button button{
+    height: 28px;
+    display: flex;
+    align-items: center;
+}
+
+.form-input-container {
+    display: flex;
+    gap: 10px;
+    aliign-items: center;
+}
+
+.form-input {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-input > input {
+    width: 150px;
+    height: 28px;
+    background-color: #2C3440;
+    border-radius: 2px;
+    padding: 5px 7px;
+    box-sizing: border-box;
+}
+
+.form-input > input:focus {
+    background-color: #E8F0FE;
+}
+
+.form-input > label {
+    font-size: 12px; 
+    color: #667788;
+    margin-bottom: 5px;
+    font-weight: 300;
+}

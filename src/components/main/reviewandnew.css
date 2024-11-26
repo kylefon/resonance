@@ -1,0 +1,14 @@
+.review-new-wrapper {
+    display: flex;
+    justify-content: space-between;
+    width: 950px;
+    padding-top: 30px;
+}
+
+
+.review-wrapper {
+    width: 630px;
+}
+.newest-wrapper {
+    width: 230px;
+}

@@ -1,0 +1,77 @@
+.reviewed-by {
+    display: flex;
+    border-bottom: 1px solid #456;
+    padding-bottom: 8px;
+    margin-bottom: 15px;
+}
+
+.reviewed-image {
+    height: 24px;
+    width: 24px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.reviewed-by-text {
+    color: #99AABB;
+    font-size: 13px;
+    display: flex;
+    gap: 5px;
+    align-items: center;
+}
+
+.reviewed-username {
+    color: #AABBCC;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.reviewed-album .album-name {
+    color: #FFFFFF;
+    font-size: 22px;
+    margin-right: 5px;
+    font-family: "Merriweather", serif;
+}
+
+.reviewed-album .album-year {
+    font-size: 18px;
+    color: #8899AA;
+    margin-right: 5px;
+    font-weight: 100;   
+}
+
+.reviewed-album {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.review-stars {
+    display: flex; 
+    gap: 7px;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.reviewed-date {
+    font-size: 13px;
+    margin-bottom: 10px;
+    color: #667788;
+    font-weight: 100; 
+}
+
+.reviewed-text {
+    font-size: 16px;
+    margin-bottom: 10px;
+    font-family: "Merriweather", serif;
+    color: #99AABB;
+}
+
+.reviewed-likes {
+    color: #8899AA;
+    font-size: 12px;
+}
+
+.stars {
+    color: gold;
+}

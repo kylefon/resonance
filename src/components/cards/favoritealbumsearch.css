@@ -1,0 +1,91 @@
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000; 
+}
+
+.modal-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    z-index: 1001;
+    width: 360px;
+    background-color: #445566; 
+    border-radius: 3px
+}
+
+
+.film-input-container {
+    width: 100%;
+}
+
+.dialog-form {
+    width: 100%;
+}
+
+
+h1 {
+    font-size: 15px;
+    color: #99AABB;
+    margin-bottom: 20px;
+}
+
+.film-title {
+    font-size: 13px;
+    color: #FFFFFF;
+    margin-bottom: 5px;
+}
+
+.film-input {
+    background-color: #CCDDEE;
+    padding: 10px;
+    width: 95%;
+    border-radius: 3px;
+}
+
+.search-results {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+    width: 362px;
+    max-height: 200px;
+    overflow-y: auto; 
+    z-index: 99999;
+    background-color: #2C3440;
+    border-radius: 3px;
+}
+
+.search-album, .search-artist {
+    font-size: 13px;
+    padding: 5px 0px;
+}
+
+.search-album {
+    color: #FFFFFF
+}
+
+.search-artist {
+    color: #99AABB;
+    font-weight: 100;
+}
+
+.search-result-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    counter: pointer;
+    padding: 5px 10px;
+
+}
+
+.search-result-item:hover {
+    background-color: green;
+}
+
+
