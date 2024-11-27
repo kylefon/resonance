@@ -63,5 +63,8 @@
     width: 100%;
     padding-bottom: 5px;
     border-bottom: 1px solid #99AABB; 
-    margin-bottom: 64px;
+}
+
+.album-section {
+    margin-bottom: 32px;
 }

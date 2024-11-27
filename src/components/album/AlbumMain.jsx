@@ -4,25 +4,46 @@ import './albummain.css'
 import { useTrackData } from '../../context/TrackDataContext';
 import { useEffect, useState } from 'react';
 import Loading from '../loading/Loading';
+import { usePocket } from '../../context/PocketContext';
+import ReviewCard from '../cards/ReviewCard';
+import { useFetchRecentAlbumActivities } from '../../hooks/useFetchRecentAlbumActivities';
+import { useFetchProfileData } from '../../hooks/useFetchProfileData';
+import { useFetchMultipleProfileData } from '../../hooks/useFetchMultipleProfileData';
 
 export default function AlbumMain() {
+
+  const [ userProfiles, setUserProfiles ] = useState([]);
 
   const { albumId } = useParams();  
   const { useFetchTrackData } = useTrackData();
   const { data: trackData, isLoading, error} = useFetchTrackData(albumId);
+
+  const { albumActivities, isLoading: albumIsLoading, error: albumError } = useFetchRecentAlbumActivities(albumId);
+
+  const {profiles, isLoading: multipleProfileLoading } = useFetchMultipleProfileData(userProfiles);
+
+  // const [ recentActivity, setRecentActivity ] = useState([]);
   
-  if (error) {
+  // Fetch user profiles when albumActivities changes
+  useEffect(() => {
+    if (albumActivities && albumActivities.length > 0) {
+      const userIds = albumActivities.map((album) => album.userId);
+      // console.log(userIds);
+      setUserProfiles(userIds);
+    }
+  }, [albumActivities]);
+    
+  if (error || albumError) {
     return <p>{error}</p>
   }
 
-  if (isLoading) {
+  if (isLoading  || albumIsLoading || multipleProfileLoading ) {
     return <Loading />;
   }
 
   if (!trackData) {
     return <p>No album data available.</p>;
   }
-
     return (
         <div className='album-section-wrapper'>
           <div className='album-main-container'>
@@ -57,29 +78,40 @@ export default function AlbumMain() {
           </div>
           <section>
             <div className="album-review-container">
-              <div className='album-review-popular'>
-                  <div className='main-popular'>
-                      <p>POPULAR REVIEWS</p>
-                  </div>
-                  <div className='main-more'>
-                      <p>MORE</p>
-                  </div>
+              <div className='album-section'>
+                <div className='album-review-popular'>
+                    <div className='main-popular'>
+                        <p>POPULAR REVIEWS</p>
+                    </div>
+                    <div className='main-more'>
+                        <p>MORE</p>
+                    </div>
+                </div>
               </div>
-              <div className='album-review-recent'>
-                  <div className='main-popular'>
-                      <p>RECENT REVIEWS</p>
-                  </div>
-                  <div className='main-more'>
-                      <p>MORE</p>
-                  </div>
+              <div className='album-section'>
+                <div className='album-review-recent'>
+                    <div className='main-popular'>
+                        <p>RECENT REVIEWS</p>
+                    </div>
+                    <div className='main-more'>
+                        <p>MORE</p>
+                    </div>
+                </div>
+                <div>
+                  {profiles.map((profile, index) => (
+                    <ReviewCard key={index} activities={albumActivities[index]} userData={profile}/>
+                  ))}
+                </div>
               </div>
-              <div className='album-review-artists'>
-                  <div className='main-popular'>
-                      <p>RELATED ARTISTS</p>
-                  </div>
-                  <div className='main-more'>
-                      <p>MORE</p>
-                  </div>
+              <div className='album-section'>
+                <div className='album-review-artists'>
+                    <div className='main-popular'>
+                        <p>RELATED ARTISTS</p>
+                    </div>
+                    <div className='main-more'>
+                        <p>MORE</p>
+                    </div>
+                </div>
               </div>
             </div>
           </section>

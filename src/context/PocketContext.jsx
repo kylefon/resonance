@@ -376,6 +376,18 @@ export const PocketProvider = ({ children }) => {
         }
     }
 
+    const getRecentAlbumActivity = async (albumId) => {
+        try {
+            const response = await pb.collection('reviews').getFullList({
+                filter: `albumId="${albumId}"`,
+                sort: '-created'
+            })
+            console.log(" get recent album activity: ", response);
+            return response;
+        } catch (e) {
+            console.error("Failed to get recent album activity");
+        }
+    }
 
     const refreshSession = useCallback(async () => {
         if (!token || !pb.authStore.isValid) return;
@@ -399,6 +411,7 @@ export const PocketProvider = ({ children }) => {
             addReview, getReview, getRecentActivities, numberOfReviewedAlbums,
             searchUsername, followUsers, removeFollowUser, checkMutual, checkIfFollowed,
             numberOfFollowing, numberOfFollowers,
+            getRecentAlbumActivity, 
             user, token, pb }}>
             {children}
         </PocketContext.Provider>
