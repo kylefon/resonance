@@ -10,19 +10,23 @@ import { useFetchRecentAlbumActivities } from '../../hooks/useFetchRecentAlbumAc
 import { useFetchProfileData } from '../../hooks/useFetchProfileData';
 import { useFetchMultipleProfileData } from '../../hooks/useFetchMultipleProfileData';
 import NoAlbumReviewCard from '../cards/NoAlbumReviewCard';
+import { useFetchPopularAlbumActivities } from '../../hooks/useFetchPopularAlbumActivities';
 
 export default function AlbumMain() {
 
   const [ userProfiles, setUserProfiles ] = useState([]);
+  const [ popularUserProfiles, setPopularUserProfiles ] = useState([]);
 
   const { albumId } = useParams();  
   const { useFetchTrackData } = useTrackData();
   const { data: trackData, isLoading, error} = useFetchTrackData(albumId);
 
   const { albumActivities, isLoading: albumIsLoading, error: albumError } = useFetchRecentAlbumActivities(albumId);
+  const { popularAlbum, isLoading: popularActLoading , error: popularActError } = useFetchPopularAlbumActivities(albumId);
 
   const {profiles, isLoading: multipleProfileLoading } = useFetchMultipleProfileData(userProfiles);
-  
+  const {profiles: popularProfiles, isLoading: multiplePopularProfileLoading } = useFetchMultipleProfileData(popularUserProfiles);
+
   // Fetch user profiles when albumActivities changes
   useEffect(() => {
     if (albumActivities && albumActivities.length > 0) {
@@ -31,12 +35,20 @@ export default function AlbumMain() {
       setUserProfiles(userIds);
     }
   }, [albumActivities]);
+
+  useEffect(() => {
+    if (popularAlbum && popularAlbum.length > 0) {
+      const userIds = popularAlbum.map((album) => album.userId);
+      setPopularUserProfiles(userIds);
+    }
+  }, [popularAlbum]);
+
     
-  if (error || albumError) {
+  if (error || albumError || popularActError)  {
     return <p>{error}</p>
   }
 
-  if (isLoading  || albumIsLoading || multipleProfileLoading ) {
+  if (isLoading  || albumIsLoading ) {
     return <Loading />;
   }
 
@@ -86,6 +98,11 @@ export default function AlbumMain() {
                         <p>MORE</p>
                     </div>
                 </div>
+                <div>
+                  {popularProfiles.slice(0,3).map((profile, index) => (
+                    <NoAlbumReviewCard key={index} activities={popularAlbum[index]} userData={profile} />
+                  ))}
+                </div>
               </div>
               <div className='album-section'>
                 <div className='album-review-recent'>
@@ -97,7 +114,7 @@ export default function AlbumMain() {
                     </div>
                 </div>
                 <div>
-                  {profiles.map((profile, index) => (
+                  {profiles.slice(0,5).map((profile, index) => ( // shows only 5 recent revoews
                     <NoAlbumReviewCard key={index} activities={albumActivities[index]} userData={profile}/>
                   ))}
                 </div>

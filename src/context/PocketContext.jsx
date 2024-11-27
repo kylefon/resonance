@@ -381,7 +381,7 @@ export const PocketProvider = ({ children }) => {
                 filter: `albumId="${albumId}"`,
                 sort: '-created'
             })
-            console.log(" get recent album activity: ", response);
+            // console.log(" get recent album activity: ", response);
             return response;
         } catch (e) {
             console.error("Failed to get recent album activity");
@@ -413,10 +413,8 @@ export const PocketProvider = ({ children }) => {
             })
 
             if (like.length > 0) {
-                console.log("check if liked true done")
                 return true;
             }  else {
-                console.log("check if liked false done")
                 return false;
             }
         } catch (e) {
@@ -452,11 +450,102 @@ export const PocketProvider = ({ children }) => {
             const response = await pb.collection('userLikes').getFullList({
                 filter: `reviewId="${reviewId}" && userReviewId="${userReviewId}"`
             });
-            console.log("number of likes", response.length);
+            // console.log("number of likes", response.length);
             return response.length;
         } catch (e) {
             console.error('Failed to get like count')
             return 0;
+        }
+    }
+
+    const getPopularAlbumActivity = async (albumId) => {
+        try {
+            console.log("getting popular album activity RIGHT NOW")
+            const response = await pb.collection('reviews').getFullList({
+                filter: `albumId="${albumId}"`,
+            })
+
+            console.log("response popular: ", response);
+
+            const reviews = response.map( async (review) => {
+                const likes = await pb.collection('userLikes').getFullList({
+                    filter: `reviewId="${review.id}"`
+                });
+                return {
+                    ...review,
+                    likesCount: likes.length,
+                    likes,
+                }
+            })
+
+            const reviewsWithLikes = await Promise.all(reviews);
+
+            const sortedReview = reviewsWithLikes.sort((a,b) => a.likesCount - b.likesCount).reverse(); 
+
+            console.log("get popular album activity", sortedReview)
+
+            return sortedReview;
+
+        } catch (e) {
+            console.error("Failed to get recent album activity");
+            return [];
+        }
+    }
+
+    const getAllPopularReview = async () => {
+        try {
+            const response = await pb.collection('reviews').getFullList();
+            
+            const popularReviews = response.map( async (review) => {
+                const likes = await pb.collection('userLikes').getFullList({
+                    filter: `reviewId="${review.id}"`
+                });
+                return {
+                    ...review, 
+                    likesCount: likes.length,
+                    likes,
+                }
+            })
+
+            const reviewWithLikes = await Promise.all(popularReviews);
+            const sortedReview = reviewWithLikes.sort((a,b) => a.likesCount - b.likesCount).reverse();
+        
+            console.log("Popular Activities all albums: ", sortedReview ); 
+            return sortedReview;
+        } catch (e) {
+            console.error("Failed to get popular reviews");
+            return [];
+        }
+    }
+
+    const getUserPopularReview = async (userId) => {
+        try {
+            console.log("USER ID GET USER POPULAR REVIEW: ", userId)
+            const response = await pb.collection('reviews').getFullList({
+                filter: `userId="${userId}"`
+            })
+
+            console.log("USER POPULAR RESPONSE: ", response)
+
+            const popularReviews = response.map( async (review) => {
+                const likes = await pb.collection('userLikes').getFullList({
+                    filter: `reviewId="${review.id}"`
+                });
+                return {
+                    ...review, 
+                    likesCount: likes.length,
+                    likes,
+                }
+            })
+
+            const reviewWithLikes = await Promise.all(popularReviews); 
+            const sortedReview = reviewWithLikes.sort((a,b) => a.likesCount - b.likesCount).reverse();
+            console.log("USER POPULAR REVIEW", sortedReview);
+
+            return sortedReview;
+        } catch (e) {
+            console.error("Failed to get user's popular reviews");
+            return [];
         }
     }
 
@@ -483,6 +572,7 @@ export const PocketProvider = ({ children }) => {
             searchUsername, followUsers, removeFollowUser, checkMutual, checkIfFollowed,
             numberOfFollowing, numberOfFollowers,
             likeReview, unlikeReview, likeCount, isLiked, 
+            getPopularAlbumActivity, getAllPopularReview, getUserPopularReview,
             user, token, pb }}>
             {children}
         </PocketContext.Provider>

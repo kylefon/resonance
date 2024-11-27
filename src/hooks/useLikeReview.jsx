@@ -10,8 +10,8 @@ export const useLikeReview = (pb, user, activities, userData, { likeReview, unli
         const ifLoggedIn = async () => {
             if (pb.authStore.isValid) {
                 setShowButton(true);
-                console.log("ACIVITIES REVIEWCARD: ", activities)
-                console.log("USERDATA REVIEWCARD: ", userData);
+                // console.log("ACIVITIES REVIEWCARD: ", activities)
+                // console.log("USERDATA REVIEWCARD: ", userData);
             } else {
                 setShowButton(false);
             }
@@ -22,17 +22,17 @@ export const useLikeReview = (pb, user, activities, userData, { likeReview, unli
 
     useEffect(() => {
         const checkIfLiked = async () => {
-            console.log("id of the user liking the review", userData.id)
-            console.log("id of the review", activities.userId)
-            console.log("id of the user that made the review", activities.id)
+            // console.log("id of the user liking the review", userData.id)
+            // console.log("id of the review", activities.userId)
+            // console.log("id of the user that made the review", activities.id)
 
 
             const check = await isLiked( user.id, activities.id, activities.userId);
             if (check) {
-                console.log("Already liked");
+                // console.log("Already liked");
                 setLikeButton(true);
             } else {
-                console.log("haven't liked it yet");
+                // console.log("haven't liked it yet");
                 setLikeButton(false);
             }
         }
@@ -67,9 +67,7 @@ export const useLikeReview = (pb, user, activities, userData, { likeReview, unli
     const unlikeClick = useCallback(async () => {
         if (activities && userData) {
             try {
-                console.log("unliking button")
                 await unlikeReview( user.id, activities.id, activities.userId );
-                console.log("done unliking button")
                 setLikeButton(false);
             } catch (e) {
                 console.error("Error unliking review: ", e);

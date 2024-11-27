@@ -1,9 +1,27 @@
 import './profile.css';
 import Loading from "../loading/Loading";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import ReviewCard from '../cards/ReviewCard';
+import { useFetchMultipleProfileData } from '../../hooks/useFetchMultipleProfileData';
+import { useEffect, useState } from 'react';
+import { useFetchUserPopularReview } from '../../hooks/useFetchUserPopularReview';
 
-export default function MainProfile({ setActiveTab, selectedAlbums, activities }) {
+export default function MainProfile({ setActiveTab, selectedAlbums, activities, userData}) {
+
     const {activities: data, isLoading, error } = activities;
+    const { userPopularReview, isLoading: userPopularLoading, error: userPopularError } = useFetchUserPopularReview(userData.id)
+    const [userProfiles, setUserProfiles] = useState([]);
+    const { profiles, isLoading: multipleProfileLoading } = useFetchMultipleProfileData(userProfiles);
+    
+    useEffect(() => {
+        if (userPopularReview && userPopularReview.length > 0 ) {
+            console.log("user id being used", userData.id)
+            const userIds = userPopularReview.map((review) => review.userId);
+            console.log("popular review of this user", userPopularReview);
+            setUserProfiles(userIds);
+            console.log("user profiles of this user", profiles);
+        }
+    }, [ userPopularReview]);
     
     const navigate = useNavigate();
 
@@ -48,7 +66,7 @@ export default function MainProfile({ setActiveTab, selectedAlbums, activities }
 
     const RecentActivitiesTab = () => (
         <div style={{paddingBottom:'32px'}}>
-            <div className="main-header" style={{ marginBottom: '10px'}}>
+            <div className="main-header" >
                 <div className="main-popular">
                     RECENT ACTIVITY
                 </div>
@@ -82,6 +100,24 @@ export default function MainProfile({ setActiveTab, selectedAlbums, activities }
         </div>
     )
 
+    const PopularActivitiesTab = () => (
+        <div style={{paddingBottom:'32px'}}>
+            <div className='main-header'>
+                <div className='main-popular'>
+                    POPULAR REVIEWS
+                </div>
+                {/* <div className='main-more'>
+                    <p>MORE</p>
+                </div> */}
+            </div>
+            <div>
+                {profiles.slice(0,3).map((profile, index) => (
+                    <ReviewCard key={index} activities={userPopularReview[index]} userData={profile}/> 
+                ))}
+            </div>
+        </div>
+    );
+
     return (
         <>
             {(!data || !selectedAlbums) ? (
@@ -91,6 +127,7 @@ export default function MainProfile({ setActiveTab, selectedAlbums, activities }
                     {/* {error && <p>{error}</p>} */}
                     <FavoriteAlbumsTab />
                     <RecentActivitiesTab />
+                    <PopularActivitiesTab />
                 </div>
             )}
         </>

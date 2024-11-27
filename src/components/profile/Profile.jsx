@@ -232,7 +232,7 @@ export default function Profile() {
                 <UserProfileHeader />
                 <Tabs />
             </div>
-            <div>{activeTab === 'Profile' && <MainProfile setActiveTab={setActiveTab} selectedAlbums={selectedAlbums} activities={{activities, recentActivitiesLoading, error}} />}</div>
+            <div>{activeTab === 'Profile' && <MainProfile setActiveTab={setActiveTab} userData={userData} selectedAlbums={selectedAlbums} activities={{activities, recentActivitiesLoading, error}} />}</div>
             <div>{activeTab === 'Activity' && <MainActivity activities={{activities, recentActivitiesLoading, error}} userData={userData}/>}</div>
             <div>{activeTab === 'Albums' && <MainAlbums activities={{activities, recentActivitiesLoading, error}} />}</div>
         </div>
