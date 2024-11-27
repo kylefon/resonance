@@ -9,6 +9,7 @@ import ReviewCard from '../cards/ReviewCard';
 import { useFetchRecentAlbumActivities } from '../../hooks/useFetchRecentAlbumActivities';
 import { useFetchProfileData } from '../../hooks/useFetchProfileData';
 import { useFetchMultipleProfileData } from '../../hooks/useFetchMultipleProfileData';
+import NoAlbumReviewCard from '../cards/NoAlbumReviewCard';
 
 export default function AlbumMain() {
 
@@ -21,8 +22,6 @@ export default function AlbumMain() {
   const { albumActivities, isLoading: albumIsLoading, error: albumError } = useFetchRecentAlbumActivities(albumId);
 
   const {profiles, isLoading: multipleProfileLoading } = useFetchMultipleProfileData(userProfiles);
-
-  // const [ recentActivity, setRecentActivity ] = useState([]);
   
   // Fetch user profiles when albumActivities changes
   useEffect(() => {
@@ -99,7 +98,7 @@ export default function AlbumMain() {
                 </div>
                 <div>
                   {profiles.map((profile, index) => (
-                    <ReviewCard key={index} activities={albumActivities[index]} userData={profile}/>
+                    <NoAlbumReviewCard key={index} activities={albumActivities[index]} userData={profile}/>
                   ))}
                 </div>
               </div>

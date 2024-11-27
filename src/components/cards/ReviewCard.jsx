@@ -2,8 +2,16 @@ import './reviewcard.css'
 import { FaHeart } from "react-icons/fa";
 import StarRating from "../stars/StarRating";
 import { Link } from "react-router-dom";
+import { usePocket } from '../../context/PocketContext';
+import { useEffect, useState } from 'react';
+import { useLikeReview, RenderLikeButton } from '../../hooks/useLikeReview';
 
 export default function ReviewCard({ activities, userData }) {
+
+    const { pb, user, likeReview, unlikeReview, likeCount, isLiked } = usePocket();
+    const { showButton, likeButton, numberOfLikes, likeClick, unlikeClick } = useLikeReview(pb, user, activities, userData, {
+        likeReview, unlikeReview, likeCount, isLiked
+    });
 
     const getTimeElapsed = (createdDate)  => {
         const created = new Date(createdDate);
@@ -31,6 +39,8 @@ export default function ReviewCard({ activities, userData }) {
             return `Now`;
         }
     }
+
+    
     
     return (
         <div className="review-container">
@@ -66,10 +76,13 @@ export default function ReviewCard({ activities, userData }) {
                 <div>
                     <p className="review-text">{activities.reviewText || ''}</p>
                 </div>
-                <div className="review-likes">
-                    <FaHeart className="heart"/>
-                    <p>No Likes yet</p>
-                </div>
+                <RenderLikeButton 
+                    showButton={showButton}
+                    likeButton={likeButton}
+                    numberOfLikes={numberOfLikes}
+                    likeClick={likeClick}
+                    unlikeClick={unlikeClick}
+                />
             </div>
         </div>
     )

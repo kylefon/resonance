@@ -1,0 +1,28 @@
+.no-album-content {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.no-album-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 20px;
+}
+
+.no-album-header {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 13px;
+    margin-bottom: 10px;
+}
+
+.review-by {
+    font-weight: 100;
+}
+
+.star-gold {
+    color: gold !important;
+}

@@ -122,8 +122,6 @@ export default function Profile() {
     const removeFollow = async () => {
         if (userData.id && user.id) {
             try {
-                console.log("set remove followeduser user.id", user.id)
-                console.log("set remove followeduser userData.id", userData.id)
                 await removeFollowUser(user.id, userData.id); 
                 setFollowedUser(false);
             } catch (e) {

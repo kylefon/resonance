@@ -10,7 +10,6 @@ export const PocketProvider = ({ children }) => {
 
     pb.autoCancellation(false);
 
-    
     const [ token, setToken ] = useState(pb.authStore.token);
     const [ user, setUser ] = useState(pb.authStore.model);
 
@@ -389,6 +388,78 @@ export const PocketProvider = ({ children }) => {
         }
     }
 
+    const likeReview = async (userId, reviewId, userReviewId) => {
+        try {
+            console.log('liking review')
+            const checkLike = await pb.collection('userLikes').getFullList({
+                filter: `userId="${userId}" && reviewId="${reviewId}" && userReviewId="${userReviewId}"`
+            })
+
+            if (checkLike.length === 0) {
+                const response = await pb.collection('userLikes').create({userId, reviewId, userReviewId})
+                console.log("done liking review")
+            } else {
+                console.error("You have already liked this review");
+            }
+        } catch (e) {
+            console.error("Failed to like review: ", e);
+        }
+    }
+
+    const isLiked = async (userId, reviewId, userReviewId) => {
+        try {
+            const like = await pb.collection('userLikes').getFullList({
+                filter: `userId="${userId}" && reviewId="${reviewId}" && userReviewId="${userReviewId}"`
+            })
+
+            if (like.length > 0) {
+                console.log("check if liked true done")
+                return true;
+            }  else {
+                console.log("check if liked false done")
+                return false;
+            }
+        } catch (e) {
+            console.error("Failed to check if review is liked");
+        }
+    }
+
+    const unlikeReview = async (userId, reviewId, userReviewId) => {
+        try {
+            console.log("unliking review")
+            const response = await pb.collection('userLikes').getFullList({
+                filter: `userId="${userId}" && reviewId="${reviewId}" && userReviewId="${userReviewId}"`,
+            });
+
+            if (response.length === 0) {
+                console.log("No matching follow record found when trying to unlike review");
+                return;
+            }
+
+            await Promise.all(
+                response.map((record) => pb.collection('userLikes').delete(record.id))
+            ); 
+
+            console.log("Done unliking review")
+
+        } catch (e) {
+            console.error("Failed to unlike review", e);
+        }
+    };
+
+    const likeCount = async (reviewId, userReviewId) => {
+        try {
+            const response = await pb.collection('userLikes').getFullList({
+                filter: `reviewId="${reviewId}" && userReviewId="${userReviewId}"`
+            });
+            console.log("number of likes", response.length);
+            return response.length;
+        } catch (e) {
+            console.error('Failed to get like count')
+            return 0;
+        }
+    }
+
     const refreshSession = useCallback(async () => {
         if (!token || !pb.authStore.isValid) return;
         const decoded = jwtDecode(token);
@@ -407,11 +478,11 @@ export const PocketProvider = ({ children }) => {
             register, login, logout, 
             changePassword, changeUsername, 
             changeAvatar, avatarUrl, getAvatar, getUserWithAvatar, removeProfile, 
-            addFavoriteAlbum, getFavoriteAlbums,
+            addFavoriteAlbum, getFavoriteAlbums, getRecentAlbumActivity,
             addReview, getReview, getRecentActivities, numberOfReviewedAlbums,
             searchUsername, followUsers, removeFollowUser, checkMutual, checkIfFollowed,
             numberOfFollowing, numberOfFollowers,
-            getRecentAlbumActivity, 
+            likeReview, unlikeReview, likeCount, isLiked, 
             user, token, pb }}>
             {children}
         </PocketContext.Provider>
