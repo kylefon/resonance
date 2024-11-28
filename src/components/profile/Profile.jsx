@@ -57,10 +57,10 @@ export default function Profile() {
             if ( !followedUser ) {
                 const check = await checkMutual(user.id, userData.id);
                 if (check) {
-                    console.log("The user is following you")
+                    // console.log("The user is following you")
                     setFollowBack(true);
                 } else {
-                    console.log("The user is not following you")
+                    // console.log("The user is not following you")
                     setFollowBack(false);
                 }
             }
@@ -95,10 +95,10 @@ export default function Profile() {
             if (!followedUser) {
                 const check = await checkIfFollowed(user.id, userData.id);
                 if (check) {
-                    console.log("followed user");
+                    // console.log("followed user");
                     setFollowedUser(true);
                 } else {
-                    console.log("user not followed");
+                    // console.log("user not followed");
                     setFollowedUser(false);
                 } 
             }
@@ -209,9 +209,8 @@ export default function Profile() {
                     <li 
                         key={tab}
                         onClick={() => setActiveTab(tab)}
-                        className={`tab-content ${activeTab === tab ? 'active' : ''}`}
-                        >
-                        <p>{tab}</p>
+                    >
+                        <p className={`tab-content ${activeTab === tab ? 'active' : ''}`}>{tab}</p>
                     </li>
                 ))}
             </ul>

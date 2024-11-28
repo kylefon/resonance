@@ -93,7 +93,7 @@ export default function EditProfile() {
     }
     
     return (
-        <div>
+        <div className='edit-profile-container'>
             <form onSubmit={handleSubmit(onSubmit)}>
                 {isError && <p>Error changing account</p>}
                 <div className="edit-header">Account Settings</div>
@@ -137,7 +137,7 @@ export default function EditProfile() {
                                     )}
                                 />
                             </div>
-                            {errors.username && <span>{errors.username.message}</span>}
+                            {errors.username && <span className='header-listen'>{errors.username.message}</span>}
                         </div>
                         <div className="change-password">
                             <p className='edit-sub-header'>Change password</p>
@@ -155,7 +155,7 @@ export default function EditProfile() {
                                         }
                                     )}
                                 />
-                                {errors.currentPassword && <span>{errors.currentPassword.message}</span>}
+                                {errors.currentPassword && <span className='header-listen'>{errors.currentPassword.message}</span>}
                             </div>
                             <div className='change-form'>
                                 <label htmlFor="newPassword" className='edit-label'>New password</label>
@@ -171,7 +171,7 @@ export default function EditProfile() {
                                         }
                                     )}
                                 />
-                                {errors.newPassword && <span>{errors.newPassword.message}</span>}
+                                {errors.newPassword && <span className='header-listen'>{errors.newPassword.message}</span>}
                             </div>
                             <div className='change-form'>
                                 <label htmlFor="confirmPassword" className='edit-label'>Confirm new password</label>
@@ -185,7 +185,7 @@ export default function EditProfile() {
                                                 value === getValues("newPassword") || "Passwords do not match"
                                         })}
                                 />
-                                {errors.confirmPassword && <span>{errors.confirmPassword.message}</span>}
+                                {errors.confirmPassword && <span className='header-listen'>{errors.confirmPassword.message}</span>}
                             </div>
                         </div>
                     </section>
@@ -193,7 +193,7 @@ export default function EditProfile() {
                         <p className='edit-sub-header'>Favorite Albums</p>
                         <div className='favorite-album-container'>
                             {selectedAlbums.map((album, index) => {
-                                console.log(`selectedAlbums[${index}]:`, album); // Log statement for debugging
+                                // console.log(`selectedAlbums[${index}]:`, album); // Log statement for debugging
                                 return (<div className='favorite-album' key={index} onClick={() => handleFavoriteAlbum(index)}>
                                     {album && album.images && album.images[0] ? (
                                         <img 

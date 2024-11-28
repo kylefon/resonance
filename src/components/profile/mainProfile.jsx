@@ -15,11 +15,8 @@ export default function MainProfile({ setActiveTab, selectedAlbums, activities, 
     
     useEffect(() => {
         if (userPopularReview && userPopularReview.length > 0 ) {
-            console.log("user id being used", userData.id)
             const userIds = userPopularReview.map((review) => review.userId);
-            console.log("popular review of this user", userPopularReview);
             setUserProfiles(userIds);
-            console.log("user profiles of this user", profiles);
         }
     }, [ userPopularReview]);
     

@@ -68,14 +68,20 @@ export default function ReviewCard({ activities, userData }) {
                 </div>
                 <div className="review-user">
                     <img src={userData.avatarUrl} className="avatar-image"/>
-                    <p>{userData.username}</p>
+                    <Link to={`/${userData.username}`} className='link'>
+                        <p>{userData.username}</p>
+                    </Link>
                 </div>
-                <div className="review-stars">
-                    <StarRating stars={activities.rating} color="gold" />
-                </div>
-                <div>
-                    <p className="review-text">{activities.reviewText || ''}</p>
-                </div>
+                { activities.rating != 0 && (
+                    <div className="review-stars">
+                        <StarRating stars={activities.rating} color="gold" />
+                    </div>
+                )}
+                { activities.reviewText !== "" && (
+                    <div>
+                        <p className="review-text">{activities.reviewText || ''}</p>
+                    </div>
+                )}
                 <RenderLikeButton 
                     showButton={showButton}
                     likeButton={likeButton}

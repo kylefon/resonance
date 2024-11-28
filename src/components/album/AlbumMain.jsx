@@ -7,7 +7,6 @@ import Loading from '../loading/Loading';
 import { usePocket } from '../../context/PocketContext';
 import ReviewCard from '../cards/ReviewCard';
 import { useFetchRecentAlbumActivities } from '../../hooks/useFetchRecentAlbumActivities';
-import { useFetchProfileData } from '../../hooks/useFetchProfileData';
 import { useFetchMultipleProfileData } from '../../hooks/useFetchMultipleProfileData';
 import NoAlbumReviewCard from '../cards/NoAlbumReviewCard';
 import { useFetchPopularAlbumActivities } from '../../hooks/useFetchPopularAlbumActivities';
@@ -45,7 +44,7 @@ export default function AlbumMain() {
 
     
   if (error || albumError || popularActError)  {
-    return <p>{error}</p>
+    return <p className='header-listen'>{error}</p>
   }
 
   if (isLoading  || albumIsLoading ) {

@@ -1,9 +1,11 @@
 .main-album-container {
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(10,1fr);
+    grid-gap: 10px;
 }
 
 .main-album-image {
-    height: 75px;
+    height: 77px;
     aspect-ratio: 1;
     margin-right: 10px;
     border-radius: 3px;

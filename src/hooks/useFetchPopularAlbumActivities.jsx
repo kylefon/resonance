@@ -27,7 +27,7 @@ export const useFetchPopularAlbumActivities = (albumId) => {
                 const popularAlbumActivity = await getPopularAlbumActivity(albumId);
 
                 if ( popularAlbumActivity && popularAlbumActivity.length > 0) {
-                    const albumIds = popularAlbumActivity.map((activity) =>activity.albumId).join(',');
+                    const albumIds = popularAlbumActivity.slice(0,20).map((activity) =>activity.albumId).join(',');
 
                     const options = {
                         method: 'GET',

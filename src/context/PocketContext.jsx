@@ -175,7 +175,7 @@ export const PocketProvider = ({ children }) => {
 
             await Promise.all(add.filter(Boolean));
 
-            console.log("Favorite albums synced successfully")
+            // console.log("Favorite albums synced successfully")
         } catch (e) {
             console.error("Error setting favorite album", e);
             throw e;
@@ -189,7 +189,7 @@ export const PocketProvider = ({ children }) => {
                 sort: 'order',
             })
 
-            console.log("FAVORITE ALBUMS OUTPUT: ", favoriteAlbums)
+            // console.log("FAVORITE ALBUMS OUTPUT: ", favoriteAlbums)
             
             return favoriteAlbums;
 
@@ -322,10 +322,10 @@ export const PocketProvider = ({ children }) => {
             });
 
             if ( response.length === 0) {
-                console.log("you are not following this user")
+                // console.log("you are not following this user")
                 return false;
             } else {
-                console.log("You are following this user")
+                // console.log("You are following this user")
                 return true;
             }
         } catch (e) {
@@ -338,8 +338,6 @@ export const PocketProvider = ({ children }) => {
             const response = await pb.collection('reviews').getFullList({
                 filter: `userId="${userId}"`
             })
-            console.log("ALBUMS: ", response);
-            console.log("Number of albums reviewed: ", response.length);
             return response.length;
         } catch (e) {
             console.error("Failed to get number of reviews", e);
@@ -353,8 +351,8 @@ export const PocketProvider = ({ children }) => {
                 filter: `userId="${userId}"`
             })
 
-            console.log("number of following", response.length);
-            console.log("userId numberofFollowign", userId)
+            // console.log("number of following", response.length);
+            // console.log("userId numberofFollowign", userId)
             return response.length;
         } catch (e) {
             console.error("Failed to get number of following")
@@ -367,7 +365,7 @@ export const PocketProvider = ({ children }) => {
             const response = await pb.collection('follows').getFullList({
                 filter: `followedUserId="${userId}"`
             })
-            console.log("number of followers", response.length);
+            // console.log("number of followers", response.length);
             return response.length;
         } catch (e) {
             console.error("Failed to get number of followers")
@@ -390,14 +388,14 @@ export const PocketProvider = ({ children }) => {
 
     const likeReview = async (userId, reviewId, userReviewId) => {
         try {
-            console.log('liking review')
+            // console.log('liking review')
             const checkLike = await pb.collection('userLikes').getFullList({
                 filter: `userId="${userId}" && reviewId="${reviewId}" && userReviewId="${userReviewId}"`
             })
 
             if (checkLike.length === 0) {
                 const response = await pb.collection('userLikes').create({userId, reviewId, userReviewId})
-                console.log("done liking review")
+                // console.log("done liking review")
             } else {
                 console.error("You have already liked this review");
             }
@@ -424,7 +422,7 @@ export const PocketProvider = ({ children }) => {
 
     const unlikeReview = async (userId, reviewId, userReviewId) => {
         try {
-            console.log("unliking review")
+            // console.log("unliking review")
             const response = await pb.collection('userLikes').getFullList({
                 filter: `userId="${userId}" && reviewId="${reviewId}" && userReviewId="${userReviewId}"`,
             });
@@ -438,7 +436,7 @@ export const PocketProvider = ({ children }) => {
                 response.map((record) => pb.collection('userLikes').delete(record.id))
             ); 
 
-            console.log("Done unliking review")
+            // console.log("Done unliking review")
 
         } catch (e) {
             console.error("Failed to unlike review", e);
@@ -509,7 +507,7 @@ export const PocketProvider = ({ children }) => {
             const reviewWithLikes = await Promise.all(popularReviews);
             const sortedReview = reviewWithLikes.sort((a,b) => a.likesCount - b.likesCount).reverse();
         
-            console.log("Popular Activities all albums: ", sortedReview ); 
+            // console.log("Popular Activities all albums: ", sortedReview ); 
             return sortedReview;
         } catch (e) {
             console.error("Failed to get popular reviews");
@@ -519,12 +517,12 @@ export const PocketProvider = ({ children }) => {
 
     const getUserPopularReview = async (userId) => {
         try {
-            console.log("USER ID GET USER POPULAR REVIEW: ", userId)
+            // console.log("USER ID GET USER POPULAR REVIEW: ", userId)
             const response = await pb.collection('reviews').getFullList({
                 filter: `userId="${userId}"`
             })
 
-            console.log("USER POPULAR RESPONSE: ", response)
+            // console.log("USER POPULAR RESPONSE: ", response)
 
             const popularReviews = response.map( async (review) => {
                 const likes = await pb.collection('userLikes').getFullList({
@@ -539,7 +537,6 @@ export const PocketProvider = ({ children }) => {
 
             const reviewWithLikes = await Promise.all(popularReviews); 
             const sortedReview = reviewWithLikes.sort((a,b) => a.likesCount - b.likesCount).reverse();
-            console.log("USER POPULAR REVIEW", sortedReview);
 
             return sortedReview;
         } catch (e) {
@@ -554,7 +551,7 @@ export const PocketProvider = ({ children }) => {
                 filter: `userId="${userId}"`,
             });
 
-            console.log("DELETE fave album: ", favoriteAlbums);
+            // console.log("DELETE fave album: ", favoriteAlbums);
 
             for (const album of favoriteAlbums ) {
                 await pb.collection('favoriteAlbums').delete(album.id)
@@ -564,7 +561,7 @@ export const PocketProvider = ({ children }) => {
                 filter: `userId="${userId} or followedUserId="${userId}"`,
             })
 
-            console.log("DELETE follows: ", follows);
+            // console.log("DELETE follows: ", follows);
 
             for ( const follow of follows) {
                 await pb.collection('follows').delete(follow.id);
@@ -574,7 +571,7 @@ export const PocketProvider = ({ children }) => {
                 filter: `userId="${userId}"`,
             })
 
-            console.log("DELETE reviews: ", reviews);
+            // console.log("DELETE reviews: ", reviews);
 
             for (const review of reviews) {
                 await pb.collection('reviews').delete(review.id);
@@ -584,7 +581,7 @@ export const PocketProvider = ({ children }) => {
                 filter: `userId="${userId}"`,
             })
 
-            console.log("DELETE user likes: ", userLikes);
+            // console.log("DELETE user likes: ", userLikes);
 
             for (const like of userLikes){   
                 await pb.collection('userLikes').delete(like.id);
@@ -592,9 +589,9 @@ export const PocketProvider = ({ children }) => {
 
             await pb.collection('users').delete(userId);
 
-            console.log(`DELETING ${userId}`)
+            // console.log(`DELETING ${userId}`)
 
-            console.log("Deleted Account and other records");
+            console.log("Deleted account and other records successfully");
         } catch (e) {
             console.error("Failed to delete account", e)
         } 

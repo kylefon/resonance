@@ -18,7 +18,7 @@ export default function MainActivity({ activities, userData }) {
             <div className="main-header">
                 <div className="header">RECENT ACTIVITIES</div>
             </div>
-            {error && <p>{error}</p>}
+            {error && <p className='header-listen'>{error}</p>}
             <div>
                 {data.map((activity, index) => (
                     <div key={index}>

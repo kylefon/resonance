@@ -29,7 +29,7 @@ export const useFetchRecentActivities = (userId) => {
                 const recentActivities = await getRecentActivities(userId);
 
                 if (recentActivities && recentActivities.length > 0) {
-                    const albumIds = recentActivities.map((activity) => activity.albumId).join(',');
+                    const albumIds = recentActivities.slice(0,20).map((activity) => activity.albumId).join(',');
 
                     const options = {
                         method:'GET',

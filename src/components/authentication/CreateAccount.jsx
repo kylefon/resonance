@@ -85,8 +85,8 @@ export default function CreateAccount({ isOpen, closeModal }) {
 
     return (
         <dialog ref={dialogRef} className="create-wrapper">
-            { isLoading && <p>Loading... </p>}
-            {isError && <p>Error creating account. The email address might be taken</p>}
+            { isLoading && <p className='header-listen'>Loading... </p>}
+            {isError && <p className='header-listen' >Error creating account. The email address might be taken</p>}
             <form onSubmit={handleSubmit(onSubmit)}>
                 <div className="main-create-wrapper">
                     <p>JOIN RESONANCE</p>
@@ -97,7 +97,7 @@ export default function CreateAccount({ isOpen, closeModal }) {
                             type="text"
                             {...register("email", { required: "Email is required" })}
                         />
-                        {errors.email && <span>{errors.email.message}</span>}
+                        {errors.email && <span className='header-listen'>{errors.email.message}</span>}
 
                         <label htmlFor="username">Username</label>
                         <input
@@ -105,7 +105,7 @@ export default function CreateAccount({ isOpen, closeModal }) {
                             type="text"
                             {...register("username", { required: "Username is required" })}
                         />
-                        {errors.username && <span style={{ color: "red" }}>{errors.username.message}</span>}
+                        {errors.username && <span className='header-listen'>{errors.username.message}</span>}
 
                         <label htmlFor="password">Password</label>
                         <input
@@ -119,7 +119,7 @@ export default function CreateAccount({ isOpen, closeModal }) {
                                 }
                             })}
                         />
-                        {errors.password && <span>{errors.password.message}</span>}
+                        {errors.password && <span className='header-listen'>{errors.password.message}</span>}
 
                         <label htmlFor="passwordConfirm">Confirm Password</label>
                         <input
@@ -131,7 +131,7 @@ export default function CreateAccount({ isOpen, closeModal }) {
                                     value === getValues("password") || "Passwords do not match"
                             })}
                         />
-                        {errors.passwordConfirm && <span>{errors.passwordConfirm.message}</span>}
+                        {errors.passwordConfirm && <span className='header-listen'>{errors.passwordConfirm.message}</span>}
                     </div>
                 </div>
                 <div className="submit-button">

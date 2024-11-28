@@ -26,7 +26,7 @@ export const useFetchFavoriteAlbums = ( userId ) => {
     
                 if (albums && albums.length > 0) {
                     // Extract album IDs
-                    const albumIds = albums.map((album) => album.albumId).join(',');
+                    const albumIds = albums.slice(0,20).map((album) => album.albumId).join(',');
     
                     const options = {
                         method: 'GET',

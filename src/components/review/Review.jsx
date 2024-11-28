@@ -8,19 +8,25 @@ import { Link, useParams } from "react-router-dom";
 import { usePocket } from "../../context/PocketContext";
 import { useTrackData } from "../../context/TrackDataContext";
 import { useFetchProfileData } from "../../hooks/useFetchProfileData";
+import { useLikeReview, RenderLikeButton } from "../../hooks/useLikeReview";
 
 export default function Review() {
 
     const { username, albumId } = useParams();  
-    const { trackData, fetchTrackData } = useTrackData();
-    const [ error, setError ] = useState(null);
-    const { getReview } = usePocket(); 
-    const { userData, isLoading } = useFetchProfileData(username);
-    
-    const [ review, setReview ] = useState(null);
+    const { useFetchTrackData } = useTrackData();
+    const { data: trackData, isLoading: trackLoading, error } = useFetchTrackData(albumId);
+    const { pb, user, likeReview, unlikeReview, likeCount, isLiked, getReview } = usePocket(); 
+    const { userData, isLoading: profileLoading } = useFetchProfileData(username);
+    const [review, setReview] = useState([]);
+
+    const { showButton, likeButton, numberOfLikes, likeClick, unlikeClick } = useLikeReview(pb, user, review, userData, {
+        likeReview, unlikeReview, likeCount, isLiked
+    }); 
 
     const setDate = (date) => {
+        if (!date) return "Unknown Date";
         const newDate = new Date(date);
+        if (isNaN(newDate)) return "Invalid Date";
         const options = { year: 'numeric', month: 'short', day: 'numeric'};
         const formattedDate = new Intl.DateTimeFormat('en-US', options).format(newDate);
 
@@ -28,29 +34,13 @@ export default function Review() {
     }
 
     useEffect(() => {
-        const getTrackData = async () => {
-          try {
-            if (!trackData && albumId) {
-              await fetchTrackData(albumId);
-            }
-          } catch (e) {
-            setError("Failed to track data")
-            console.error("Failed to track data", e);
-          } 
-        }
-
-        getTrackData();    
-    }, [albumId, trackData, fetchTrackData]);
-
-    useEffect(() => {
         const fetchReview = async () => {
             if (userData?.id && albumId) {
                 try {
                     const data = await getReview(userData.id, albumId);
-                    console.log("FETCH REVIEW REVIEWjsx: ", data);
+                    // console.log("fetch get review", data);
                     setReview(data);
                 } catch (e) {
-                    setError("Failed to fetch review data");
                     console.error(e);
                 }
             }
@@ -60,10 +50,10 @@ export default function Review() {
     }, [albumId, userData.id, getReview])
 
     if (error) {
-        return <p>{error}</p>
+        return <p className='header-listen'>{error}</p>
     }
 
-    if (!trackData) {
+    if (profileLoading || trackLoading || !trackData || !userData) {
         return <Loading />
     }
 
@@ -79,7 +69,14 @@ export default function Review() {
                 <section className="album-info-section">
                     <div className="reviewed-by">
                         <img src={userData.avatarUrl} alt="user image" className="reviewed-image"/>
-                        <div className="reviewed-by-text">Review by <div className="reviewed-username">{userData.username}</div></div>
+                        <div className="reviewed-by-text">
+                            Review by 
+                            <Link to={`/${userData.username}`} className='link'>
+                                <div className="reviewed-username">
+                                    {userData.username}
+                                </div>
+                            </Link>
+                        </div>
                     </div>
                     <div>
                         <div className="reviewed-album">
@@ -104,9 +101,13 @@ export default function Review() {
                         <div className="reviewed-text">
                             {review.reviewText}
                         </div>
-                        <div className="reviewed-lkes">
-                            <FaHeart /> No likes yet
-                        </div>
+                        <RenderLikeButton 
+                            showButton={showButton}
+                            likeButton={likeButton}
+                            numberOfLikes={numberOfLikes}
+                            likeClick={likeClick}
+                            unlikeClick={unlikeClick}
+                        />
                     </div>
                 </section>
             </div>

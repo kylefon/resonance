@@ -27,7 +27,7 @@ export const useFetchUserPopularReview = (userId) => {
                 const popularAlbumActivity = await getUserPopularReview(userId);
 
                 if ( popularAlbumActivity && popularAlbumActivity.length > 0) {
-                    const albumIds = popularAlbumActivity.map((activity) =>activity.albumId).join(',');
+                    const albumIds = popularAlbumActivity.slice(0,20).map((activity) =>activity.albumId).join(',');
 
                     const options = {
                         method: 'GET',
@@ -56,7 +56,7 @@ export const useFetchUserPopularReview = (userId) => {
                         trackData: trackDataMap[activity.albumId] || null,
                     }))
 
-                    console.log("USER POPULAR ALBUMS REVIEW:", updatedActivities)
+                    // console.log("USER POPULAR ALBUMS REVIEW:", updatedActivities)
                     
                     setUserPopularReview(updatedActivities);
 

@@ -19,11 +19,10 @@ export const useFetchAllPopular = () => {
             }
 
             try {
-                console.log("Getting all popular reviews")
                 const popularAlbumActivity = await getAllPopularReview();
 
                 if ( popularAlbumActivity && popularAlbumActivity.length > 0) {
-                    const albumIds = popularAlbumActivity.map((activity) =>activity.albumId).join(',');
+                    const albumIds = popularAlbumActivity.slice(0,20).map((activity) =>activity.albumId).join(',');
 
                     const options = {
                         method: 'GET',
@@ -36,8 +35,8 @@ export const useFetchAllPopular = () => {
                     const response = await fetch(`https://api.spotify.com/v1/albums?ids=${albumIds}`, options);
 
                     if (!response.ok) {
-                        console.error("Failed to fetch recent activity albums")
-                        throw new Error("Failed to fetch recent activity albums");
+                        console.error("Failed to fetch popular albums")
+                        throw new Error("Failed to fetch popular albums");
                     }
                     
                     const { albums } = await response.json();
@@ -52,7 +51,6 @@ export const useFetchAllPopular = () => {
                         trackData: trackDataMap[activity.albumId] || null,
                     }))
 
-                    console.log("POPULAR ALL ALBUMS REVIEW:", updatedActivities)
                     
                     setAllPopular(updatedActivities);
 

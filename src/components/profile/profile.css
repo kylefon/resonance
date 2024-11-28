@@ -71,7 +71,7 @@
 }
 
 .tab-content {
-    margin: 12px;
+    padding: 12px;
     font-size: 15px;
     color: #FFFFFF;
     border-bottom: 2px solid transparent;
@@ -263,5 +263,9 @@
     padding: 9px 12px 8px;
     font-weight: 900;
     border-radius: 3px;
+}
+
+.edit-profile-container {
+    margin: 30px 0px;
 }
 }

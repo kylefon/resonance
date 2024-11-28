@@ -34,7 +34,7 @@ export default function FavoriteAlbumSearch({ isOpen, closeModal, onAlbumSelect 
             <div className="modal-container">
 
             <Form className="dialog-form">
-                {isLoading && <p>Loading...</p>}
+                {isLoading && <p className='header-listen'>Loading...</p>}
                     <h1>PICK A FAVORITE FILM</h1>
                     <div className="film-input-container">
                         <label htmlFor="film-name" className="film-title">Name of Film</label>

@@ -15,7 +15,7 @@ export default function MainAlbums({ activities }) {
 
     return (
         <div>
-            {error && <p>{error}</p>}
+            {error && <p className='header-listen'>{error}</p>}
             <div className="main-header" style={{ marginBottom: '10px'}}>
                 <div className="header">
                     REVIEWED FILMS
@@ -28,7 +28,7 @@ export default function MainAlbums({ activities }) {
                             <img src={activity.trackData.images[0].url} className="main-album-image"/>
                         </Link>
                         <div className="album-review-icons">
-                            {activity.rating && <StarRating stars={activity.rating} color="#556677"/>}
+                            {activity.rating > 0 && <StarRating stars={activity.rating} color="#556677"/>}
                             {activity.liked && <FaHeart />}
                             {activity.reviewText && <LuText />}
                         </div>
