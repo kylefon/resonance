@@ -9,26 +9,6 @@
     padding-top: 60px;
 }
 
-.main-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-    padding-bottom: 5px;
-    border-bottom: 1px solid #99AABB; 
-    margin-bottom: 10px;
-}
-
-.main-popular {
-    font-size: 13px;
-    color: #99AABB;
-}
-
-.main-more {
-    font-size: 11px;
-    color: #667788;
-}
-
 .albums-container {
     display: flex;
     align-items: center;

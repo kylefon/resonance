@@ -32,7 +32,7 @@ export default function MainProfile({ setActiveTab, selectedAlbums, activities, 
     const FavoriteAlbumsTab = () => (
         <div style={{ paddingBottom: '32px' }}>
             <div className='main-header' style={{ marginBottom: '10px'}}>
-                <div className="main-popular">
+                <div className="header">
                     <p>FAVORITE ALBUMS</p>
                 </div>
             </div>
@@ -67,10 +67,10 @@ export default function MainProfile({ setActiveTab, selectedAlbums, activities, 
     const RecentActivitiesTab = () => (
         <div style={{paddingBottom:'32px'}}>
             <div className="main-header" >
-                <div className="main-popular">
+                <div className="header">
                     RECENT ACTIVITY
                 </div>
-                <div className='main-more' onClick={() => setActiveTab("Activity")} style={{ cursor: "pointer" }}>
+                <div className='more' onClick={() => setActiveTab("Activity")} style={{ cursor: "pointer" }}>
                     <p>MORE</p>
                 </div>
             </div>
@@ -103,10 +103,10 @@ export default function MainProfile({ setActiveTab, selectedAlbums, activities, 
     const PopularActivitiesTab = () => (
         <div style={{paddingBottom:'32px'}}>
             <div className='main-header'>
-                <div className='main-popular'>
+                <div className='header'>
                     POPULAR REVIEWS
                 </div>
-                {/* <div className='main-more'>
+                {/* <div className='more'>
                     <p>MORE</p>
                 </div> */}
             </div>

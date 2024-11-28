@@ -23,7 +23,7 @@ export const useFetchMultipleProfileData = (userIds) => {
 
                 const profiles = await Promise.all(profilePromises)
                 
-                console.log(" fetch multiple profile data: ", profiles);
+                // console.log(" fetch multiple profile data: ", profiles);
 
                 setProfiles(profiles);
 

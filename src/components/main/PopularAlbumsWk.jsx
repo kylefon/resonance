@@ -29,10 +29,10 @@ export default function PopularAlbmusWk() {
     return (
         <div className='main-week'>
             <div className='main-header'>
-                <div className='main-popular'>
+                <div className='header'>
                     <p>TOP ALBUMS</p>
                 </div>
-                {/* <div className='main-more'>
+                {/* <div className='more'>
                     <p>MORE</p>
                 </div> */}
             </div>

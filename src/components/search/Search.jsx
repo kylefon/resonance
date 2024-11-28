@@ -61,7 +61,7 @@ export default function Search() {
     <div className="searched-results-container">
       <div className="searched-results">
         <div className="main-header">
-          <p className="main-popular">SHOWING MATCHES FOR "{query}"</p>
+          <p className="header">SHOWING MATCHES FOR "{query}"</p>
         </div>
         <div className="search-content">
             {activeTab === 'albums' && 
@@ -94,7 +94,7 @@ export default function Search() {
                 ))}
                 </>
               ) : (
-                <p className="main-popular" style={{marginTop: "10px"}}>No results found for "{query}".</p>
+                <p className="header" style={{marginTop: "10px"}}>No results found for "{query}".</p>
               ))
             }
             {activeTab === 'users' && 
@@ -111,14 +111,14 @@ export default function Search() {
                   </Link>
                 ))
               ) : (
-                <p className="main-popular" style={{marginTop: "10px"}}>No results found for "{query}".</p>
+                <p className="header" style={{marginTop: "10px"}}>No results found for "{query}".</p>
               )  
             )} 
         </div>
       </div>
       <div className="searched-filter">
         <div className="main-header">
-          <p className="main-popular">SHOW RESULTS FOR</p>
+          <p className="header">SHOW RESULTS FOR</p>
         </div>
         <div className="result-filter">
           <ul>

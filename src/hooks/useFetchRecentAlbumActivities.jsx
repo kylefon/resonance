@@ -57,7 +57,7 @@ export const useFetchRecentAlbumActivities = (albumId) => {
                         trackData: trackDataMap[activity.albumId] || null,
                     }))
 
-                    console.log("RECENT ALBUM:", updatedActivities)
+                    // console.log("RECENT ALBUM:", updatedActivities)
                     
                     setAlbumActivities(updatedActivities);
                 } else {

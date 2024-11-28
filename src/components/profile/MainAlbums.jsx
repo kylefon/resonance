@@ -17,7 +17,7 @@ export default function MainAlbums({ activities }) {
         <div>
             {error && <p>{error}</p>}
             <div className="main-header" style={{ marginBottom: '10px'}}>
-                <div className="main-popular">
+                <div className="header">
                     REVIEWED FILMS
                 </div>
             </div>

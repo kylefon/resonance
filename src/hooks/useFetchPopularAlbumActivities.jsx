@@ -56,7 +56,7 @@ export const useFetchPopularAlbumActivities = (albumId) => {
                         trackData: trackDataMap[activity.albumId] || null,
                     }))
 
-                    console.log("POPULAR ALBUMS REVIEW:", updatedActivities)
+                    // console.log("POPULAR ALBUMS REVIEW:", updatedActivities)
                     
                     setPopularAlbums(updatedActivities);
 

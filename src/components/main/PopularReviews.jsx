@@ -38,10 +38,10 @@ export default function PopularReviews() {
         <div className='review-popular-container'> 
             {error && <p>{error}</p>}
             <div className='reviews-header'>
-                <div className='main-popular'>
+                <div className='header'>
                     <p>POPULAR REVIEWS</p>
                 </div>
-                <div className='main-more'>
+                <div className='more'>
                     <p>MORE</p>
                 </div>
             </div>

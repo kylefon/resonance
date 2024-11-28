@@ -9,10 +9,10 @@ export default function NewestAlbums() {
     return (
         <div>
             <div className='newest-header'>
-                <div className='main-popular'>
+                <div className='header'>
                     <p>NEWEST ALBUMS</p>
                 </div>
-                {/* <div className='main-more'>
+                {/* <div className='more'>
                     <p>MORE</p>
                 </div> */}
             </div>

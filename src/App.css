@@ -5,3 +5,23 @@
     justify-content: center;
     width: 100%;
 }
+
+.main-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #99AABB; 
+    margin-bottom: 10px;
+}
+
+.header {
+    font-size: 13px;
+    color: #99AABB;
+}
+
+.more {
+    font-size: 11px;
+    color: #667788;
+}

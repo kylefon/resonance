@@ -460,12 +460,11 @@ export const PocketProvider = ({ children }) => {
 
     const getPopularAlbumActivity = async (albumId) => {
         try {
-            console.log("getting popular album activity RIGHT NOW")
             const response = await pb.collection('reviews').getFullList({
                 filter: `albumId="${albumId}"`,
             })
 
-            console.log("response popular: ", response);
+            // console.log("response popular: ", response);
 
             const reviews = response.map( async (review) => {
                 const likes = await pb.collection('userLikes').getFullList({
@@ -482,7 +481,7 @@ export const PocketProvider = ({ children }) => {
 
             const sortedReview = reviewsWithLikes.sort((a,b) => a.likesCount - b.likesCount).reverse(); 
 
-            console.log("get popular album activity", sortedReview)
+            // console.log("get popular album activity", sortedReview)
 
             return sortedReview;
 

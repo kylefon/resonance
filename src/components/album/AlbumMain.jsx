@@ -90,11 +90,11 @@ export default function AlbumMain() {
           <section>
             <div className="album-review-container">
               <div className='album-section'>
-                <div className='album-review-popular'>
-                    <div className='main-popular'>
+                <div className='main-header'>
+                    <div className='header'>
                         <p>POPULAR REVIEWS</p>
                     </div>
-                    <div className='main-more'>
+                    <div className='more'>
                         <p>MORE</p>
                     </div>
                 </div>
@@ -105,11 +105,11 @@ export default function AlbumMain() {
                 </div>
               </div>
               <div className='album-section'>
-                <div className='album-review-recent'>
-                    <div className='main-popular'>
+                <div className='main-header'>
+                    <div className='header'>
                         <p>RECENT REVIEWS</p>
                     </div>
-                    <div className='main-more'>
+                    <div className='more'>
                         <p>MORE</p>
                     </div>
                 </div>
@@ -120,11 +120,11 @@ export default function AlbumMain() {
                 </div>
               </div>
               <div className='album-section'>
-                <div className='album-review-artists'>
-                    <div className='main-popular'>
+                <div className='main-header'>
+                    <div className='header'>
                         <p>RELATED ARTISTS</p>
                     </div>
-                    <div className='main-more'>
+                    <div className='more'>
                         <p>MORE</p>
                     </div>
                 </div>

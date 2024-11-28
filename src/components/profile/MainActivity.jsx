@@ -16,7 +16,7 @@ export default function MainActivity({ activities, userData }) {
     return (
         <div>
             <div className="main-header">
-                <div className="main-popular">RECENT ACTIVITIES</div>
+                <div className="header">RECENT ACTIVITIES</div>
             </div>
             {error && <p>{error}</p>}
             <div>

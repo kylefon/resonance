@@ -2,7 +2,7 @@ import { FaStar } from "react-icons/fa";
 
 
 const StarRating = ({ stars }) => {
-    const starCount = parseInt(stars, 5);
+    const starCount = parseInt(stars, 10);
 
     return (
         <div className="star-rating">
