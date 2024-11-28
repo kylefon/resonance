@@ -11,11 +11,13 @@ export default function FavoriteAlbumSearch({ isOpen, closeModal, onAlbumSelect 
     const { search: searchResults, isLoading } = useFetchSearch(query);
 
     const inputRef = useRef(null);
-    const [inputHeight, setInputHeight] = useState(0);
+    const searchResultsRef = useRef(null);
+    const [searchPosition, setSearchPosition] = useState({ top: 0, left: 0, width: 0});
 
     useEffect(() => {
         if (inputRef.current) {
-            setInputHeight(inputRef.current.offsetHeight);
+            const { top, left, width, height} = inputRef.current.getBoundingClientRect();
+            setSearchPosition({ top: top + height + window.scrollY, left, width });
         }
     }, [query])
     
@@ -52,7 +54,13 @@ export default function FavoriteAlbumSearch({ isOpen, closeModal, onAlbumSelect 
 
             <SearchResults
                 results={searchResults}
-                style={{ top: `${inputHeight + 485}px`}}
+                ref={searchResultsRef}
+                style={{
+                    position: "absolute",
+                    top: `${searchPosition.top}px`,
+                    left: `${searchPosition.left}px`,
+                    width: `${searchPosition.width}px`
+                }}
                 onSelect={(album) => {
                     onAlbumSelect(album);
                     closeModal();

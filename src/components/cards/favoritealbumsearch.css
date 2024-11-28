@@ -50,9 +50,6 @@ h1 {
 }
 
 .search-results {
-    position: absolute;
-    left: 50%;
-    transform: translate(-50%);
     width: 362px;
     max-height: 200px;
     overflow-y: auto; 

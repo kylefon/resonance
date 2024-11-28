@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { usePocket } from '../../context/PocketContext'
 import FavoriteAlbumSearch from '../cards/FavoriteAlbumSearch';
 import { useFetchFavoriteAlbums } from '../../hooks/useFavoriteAlbums';
+import DeleteAccount from '../cards/DeleteAccount';
 
 export default function EditProfile() {
 
@@ -15,6 +16,7 @@ export default function EditProfile() {
 
     const [currentIndex, setCurrentIndex] = useState(null);
     const [ filmModal, setFilmModal ] = useState(false);
+    const [deleteModal, setDeleteModal] = useState(false);
     const [ isLoading, setIsLoading ] = useState(false);
     const [ isError, setIsError ] = useState(false);
 
@@ -50,6 +52,9 @@ export default function EditProfile() {
             return updatedAlbums;
         });
     };
+
+    const openDeleteModal = () => setDeleteModal(true);
+    const closeDeleteModal = () => setDeleteModal(false);
 
     async function onSubmit(data) {
         setIsLoading(true);
@@ -206,11 +211,17 @@ export default function EditProfile() {
                         </div>
                     </section>
                 </div>
-                <footer className='submit-button'>
-                    <button type="submit" disabled={isLoading}>SAVE CHANGES</button>
+                <footer className='button-container'>
+                    <div>
+                        <button className='delete-button' type="button" onClick={openDeleteModal}>DELETE</button>
+                    </div>
+                    <div className='submit-button'>
+                        <button type="submit" disabled={isLoading}>SAVE CHANGES</button>
+                    </div>
                 </footer>
             </form>
             <FavoriteAlbumSearch isOpen={filmModal} closeModal={handleClose} onAlbumSelect={handleAlbumSelect} />
+            <DeleteAccount isOpen={deleteModal} closeModal={closeDeleteModal}/>
         </div>
     )
 }

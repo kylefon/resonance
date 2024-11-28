@@ -547,6 +547,58 @@ export const PocketProvider = ({ children }) => {
             console.error("Failed to get user's popular reviews");
             return [];
         }
+    };
+
+    const deleteAccount = async (userId) => {
+        try {
+            const favoriteAlbums = await pb.collection('favoriteAlbums').getFullList({
+                filter: `userId="${userId}"`,
+            });
+
+            console.log("DELETE fave album: ", favoriteAlbums);
+
+            for (const album of favoriteAlbums ) {
+                await pb.collection('favoriteAlbums').delete(album.id)
+            }
+
+            const follows = await pb.collection('follows').getFullList({
+                filter: `userId="${userId} or followedUserId="${userId}"`,
+            })
+
+            console.log("DELETE follows: ", follows);
+
+            for ( const follow of follows) {
+                await pb.collection('follows').delete(follow.id);
+            }
+
+            const reviews = await pb.collection('reviews').getFullList({
+                filter: `userId="${userId}"`,
+            })
+
+            console.log("DELETE reviews: ", reviews);
+
+            for (const review of reviews) {
+                await pb.collection('reviews').delete(review.id);
+            }
+
+            const userLikes = await pb.collection('userLikes').getFullList({
+                filter: `userId="${userId}"`,
+            })
+
+            console.log("DELETE user likes: ", userLikes);
+
+            for (const like of userLikes){   
+                await pb.collection('userLikes').delete(like.id);
+            }
+
+            await pb.collection('users').delete(userId);
+
+            console.log(`DELETING ${userId}`)
+
+            console.log("Deleted Account and other records");
+        } catch (e) {
+            console.error("Failed to delete account", e)
+        } 
     }
 
     const refreshSession = useCallback(async () => {
@@ -573,6 +625,7 @@ export const PocketProvider = ({ children }) => {
             numberOfFollowing, numberOfFollowers,
             likeReview, unlikeReview, likeCount, isLiked, 
             getPopularAlbumActivity, getAllPopularReview, getUserPopularReview,
+            deleteAccount,
             user, token, pb }}>
             {children}
         </PocketContext.Provider>
