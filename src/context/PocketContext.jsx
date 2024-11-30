@@ -597,6 +597,33 @@ export const PocketProvider = ({ children }) => {
         } 
     }
 
+    const getFriendsRecentActivity = async (userId) => {
+        try {
+            const response = await pb.collection('follows').getFullList({
+                filter: `userId="${userId}"`
+            })
+
+            // console.log("Response ", response)
+
+            const followedInPromises = response.map((user) => 
+                pb.collection('reviews').getFullList({
+                    filter: `userId="${user.followedUserId}"`
+                })   
+            );
+
+            // console.log("followed in promises", followedInPromises)
+
+            const promiseFollow = await Promise.all(followedInPromises)
+
+            // console.log("Get friend recent activity ", promiseFollow);
+
+            return promiseFollow;
+
+        } catch (e) {
+            console.error("Failed to get friend's recent activities")
+        }
+    }
+
     const refreshSession = useCallback(async () => {
         if (!token || !pb.authStore.isValid) return;
         const decoded = jwtDecode(token);
@@ -615,7 +642,7 @@ export const PocketProvider = ({ children }) => {
             register, login, logout, 
             changePassword, changeUsername, 
             changeAvatar, avatarUrl, getAvatar, getUserWithAvatar, removeProfile, 
-            addFavoriteAlbum, getFavoriteAlbums, getRecentAlbumActivity,
+            addFavoriteAlbum, getFavoriteAlbums, getRecentAlbumActivity, getFriendsRecentActivity,
             addReview, getReview, getRecentActivities, numberOfReviewedAlbums,
             searchUsername, followUsers, removeFollowUser, checkMutual, checkIfFollowed,
             numberOfFollowing, numberOfFollowers,

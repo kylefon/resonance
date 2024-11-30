@@ -268,4 +268,23 @@
 .edit-profile-container {
     margin: 30px 0px;
 }
+
+
+.header-list {
+    display: flex;
+    gap: 12px;   
+}
+
+.header.active {
+    border-bottom: 2px solid green; 
+    padding-bottom: 5px;
+}
+
+.main-header-activity {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    border-bottom: 1px solid #99AABB;
+    margin-bottom: 10px;
 }

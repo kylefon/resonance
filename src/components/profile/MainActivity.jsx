@@ -1,31 +1,46 @@
 import Loading from '../loading/Loading';
 import ReviewCard from '../cards/ReviewCard';
-import { useFetchProfileData } from '../../hooks/useFetchProfileData';
+import { FriendReviewCards } from './FriendReviewCards';
+import { useEffect, useState } from 'react';
 
 export default function MainActivity({ activities, userData }) {
 
-    // const { userId: username } = useParams();
-    
-    // const { activities, isLoading, error } = useFetchRecentActivities(userId);
     const { activities: data, isLoading, error } = activities; 
-
+    const [activeTab, setActiveTab] = useState('you')
+    
     if (isLoading) {
         return <Loading />
     }
+
+    const UserTab = () => (
+        <div>
+            {data.map((activity, index) => (
+                <div key={index}>
+                    <ReviewCard activities={activity} userData={userData}/>
+                </div>
+            ))}
+        </div>
+    )
     
     return (
         <div>
-            <div className="main-header">
-                <div className="header">RECENT ACTIVITIES</div>
+            <div className="main-header-activity">
+                <ul className='header-list'>
+                    <li className={`header ${activeTab === 'you' ? 'active' : ''}`} onClick={() => setActiveTab('you')}>YOU</li>
+                    <li className={`header ${activeTab === 'friends' ? 'active' : ''}`} onClick={() => setActiveTab('friends')}>FRIENDS</li>
+                </ul>
             </div>
             {error && <p className='header-listen'>{error}</p>}
-            <div>
-                {data.map((activity, index) => (
-                    <div key={index}>
-                        <ReviewCard activities={activity} userData={userData}/>
-                    </div>
-                ))}
-            </div>
+            {activeTab === 'you' && (
+                <div>
+                    <UserTab />
+                </div>
+            )}
+            {activeTab === 'friends' && userData?.id && (
+                <div>
+                    <FriendReviewCards userId={userData.id}/>
+                </div>
+            )}
         </div>
     )
 }

@@ -4,8 +4,6 @@ import './albummain.css'
 import { useTrackData } from '../../context/TrackDataContext';
 import { useEffect, useState } from 'react';
 import Loading from '../loading/Loading';
-import { usePocket } from '../../context/PocketContext';
-import ReviewCard from '../cards/ReviewCard';
 import { useFetchRecentAlbumActivities } from '../../hooks/useFetchRecentAlbumActivities';
 import { useFetchMultipleProfileData } from '../../hooks/useFetchMultipleProfileData';
 import NoAlbumReviewCard from '../cards/NoAlbumReviewCard';
