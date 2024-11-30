@@ -360,6 +360,20 @@ export const PocketProvider = ({ children }) => {
         }
     }
 
+    const userFollowing = async (userId) => {
+        try {
+            const response = await pb.collection('follows').getFullList({
+                filter: `userId="${userId}"`
+            })
+
+            console.log("userFollowing context", response);
+
+            return response;
+        } catch (e) {
+            console.error("Failed to get following", e);
+        }
+    }
+
     const numberOfFollowers = async (userId) => {
         try {
             const response = await pb.collection('follows').getFullList({
@@ -370,6 +384,35 @@ export const PocketProvider = ({ children }) => {
         } catch (e) {
             console.error("Failed to get number of followers")
             return 0;
+        }
+    }
+
+    const userFollowers = async (userId) => {
+        try {
+            const response = await pb.collection('follows').getFullList({
+                filter: `followedUserId="${userId}"`
+            })
+
+            console.log("user followers context ", response)
+
+            return response;
+        } catch (e) {
+            console.error("Failed to get followers")
+        }
+    }
+
+
+    const getUserFromUserId = async (followedUserId) => {
+        try {
+            console.log("followedUserId getUserFromId", followedUserId)
+            const userDetails = await pb.collection('users').getFullList({
+                filter: `id="${followedUserId}"`
+            })
+
+            console.log("getUserFromUserId response ", userDetails);
+            return userDetails;
+        } catch (e) {
+            console.error(`Failed to get user details for userFollowing=${user.followedUserId}`, e)
         }
     }
 
@@ -646,9 +689,10 @@ export const PocketProvider = ({ children }) => {
             addReview, getReview, getRecentActivities, numberOfReviewedAlbums,
             searchUsername, followUsers, removeFollowUser, checkMutual, checkIfFollowed,
             numberOfFollowing, numberOfFollowers,
+            userFollowing, userFollowers,
             likeReview, unlikeReview, likeCount, isLiked, 
             getPopularAlbumActivity, getAllPopularReview, getUserPopularReview,
-            deleteAccount,
+            deleteAccount, getUserFromUserId, 
             user, token, pb }}>
             {children}
         </PocketContext.Provider>

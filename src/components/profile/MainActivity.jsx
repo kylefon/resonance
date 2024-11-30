@@ -1,7 +1,7 @@
 import Loading from '../loading/Loading';
 import ReviewCard from '../cards/ReviewCard';
 import { FriendReviewCards } from './FriendReviewCards';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 export default function MainActivity({ activities, userData }) {
 

@@ -9,13 +9,11 @@ export const FriendReviewCards = ({ userId }) => {
     const { friendActivities, isLoading: activitiesLoading } = useFetchFriendsRecentActivity(userId);
     const { profiles, isLoading: profilesLoading } = useFetchMultipleProfileData(userIds);
 
-    // Extract user IDs from friend activities
     useEffect(() => {
         const gettingUserIds = friendActivities.flatMap(activity => activity[0]?.userId || []);
         setUserIds(gettingUserIds);
     }, [friendActivities]);
 
-    // Memoized updated activities
     const updatedActivities = useMemo(() => {
         return friendActivities.flat().map(activity => {
             const data = profiles.find(profile => profile.id === activity.userId);
@@ -23,16 +21,16 @@ export const FriendReviewCards = ({ userId }) => {
                 ...activity,
                 userData: data || null,
             };
-        });
+        }).reverse();
     }, [friendActivities, profiles]);
 
     // Debugging logs
-    useEffect(() => {
-        console.log("Friend activities:", friendActivities);
-        console.log("User IDs:", userIds);
-        console.log("Profiles:", profiles);
-        console.log("Updated activities:", updatedActivities);
-    }, [friendActivities, userIds, profiles, updatedActivities]);
+    // useEffect(() => {
+    //     console.log("Friend activities:", friendActivities);
+    //     console.log("User IDs:", userIds);
+    //     console.log("Profiles:", profiles);
+    //     console.log("Updated activities:", updatedActivities);
+    // }, [friendActivities, userIds, profiles, updatedActivities]);
 
     // Loading state
     if (activitiesLoading || profilesLoading) {

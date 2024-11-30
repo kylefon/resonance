@@ -5,7 +5,7 @@ import StarRating from "../stars/StarRating";
 import { LuText } from "react-icons/lu";
 import { FaHeart } from "react-icons/fa";
 
-export default function MainAlbums({ activities }) {
+export default function MainAlbums({ activities, userData }) {
     
     const { activities: data, recentActivitiesLoading: isLoading, error } = activities;
     
@@ -24,7 +24,7 @@ export default function MainAlbums({ activities }) {
             <div className="main-album-container">
                 {data.map((activity, index) => (
                     <div key={index}>
-                        <Link to={`/${activity.username}/film/${activity.albumId}`}>
+                        <Link to={`/${userData.username}/film/${activity.albumId}`}>
                             <img src={activity.trackData.images[0].url} className="main-album-image"/>
                         </Link>
                         <div className="album-review-icons">

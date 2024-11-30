@@ -9,10 +9,11 @@ import { usePocket } from '../../context/PocketContext';
 import { useFetchProfileData } from '../../hooks/useFetchProfileData';
 import { useFetchRecentActivities } from '../../hooks/useFetchRecentActivities';
 import { useFetchFavoriteAlbums } from '../../hooks/useFavoriteAlbums';
+import MainNetwork from './MainNetwork';
 
 export default function Profile() {
     
-    const tabs = [ 'Profile', 'Activity', 'Albums' ]
+    const tabs = [ 'Profile', 'Activity', 'Albums', 'Network' ]
     
     const { pb, user, followUsers, removeFollowUser, checkMutual, numberOfReviewedAlbums, numberOfFollowing, numberOfFollowers, checkIfFollowed } = usePocket();
     const { userId } = useParams();
@@ -173,7 +174,7 @@ export default function Profile() {
                 </div>
             </div>
             <div className='album-content-container'>
-                <div className='album-content'>
+                <div className='album-content' onClick={() => setActiveTab("Albums")} style={{cursor: "pointer"}}>
                     <p className='album-number'>
                         {reviewedAlbumCount}
                     </p>
@@ -181,15 +182,15 @@ export default function Profile() {
                         ALBUMS
                     </p>
                 </div>
-                <div className='album-content'>
+                <div className='album-content' onClick={() => setActiveTab("Network")} style={{cursor: "pointer"}}>
                     <p className='album-number'>
                         {followersCount}
                     </p>
-                    <p className='album-header'>
+                    <p className='album-header' >
                         FOLLOWERS
                     </p>
                 </div>
-                <div className='album-content'>
+                <div className='album-content' onClick={() => setActiveTab("Network")} style={{cursor: "pointer"}}>
                     <p className='album-number'>
                         {followingCount}
                     </p>
@@ -233,7 +234,8 @@ export default function Profile() {
             </div>
             <div>{activeTab === 'Profile' && <MainProfile setActiveTab={setActiveTab} userData={userData} selectedAlbums={selectedAlbums} activities={{activities, recentActivitiesLoading, error}} />}</div>
             <div>{activeTab === 'Activity' && <MainActivity activities={{activities, recentActivitiesLoading, error}} userData={userData}/>}</div>
-            <div>{activeTab === 'Albums' && <MainAlbums activities={{activities, recentActivitiesLoading, error}} />}</div>
+            <div>{activeTab === 'Albums' && <MainAlbums activities={{activities, recentActivitiesLoading, error}} userData={userData}/>}</div>
+            <div>{activeTab === 'Network' && <MainNetwork userId={userData.id}/>}</div>
         </div>
     )
 }
