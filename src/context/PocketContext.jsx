@@ -600,13 +600,23 @@ export const PocketProvider = ({ children }) => {
                 await pb.collection('favoriteAlbums').delete(album.id)
             }
 
-            const follows = await pb.collection('follows').getFullList({
-                filter: `userId="${userId} or followedUserId="${userId}"`,
+            const followsUserId = await pb.collection('follows').getFullList({
+                filter: `userId="${userId}"`,
             })
 
             // console.log("DELETE follows: ", follows);
 
-            for ( const follow of follows) {
+            for ( const follow of followsUserId) {
+                await pb.collection('follows').delete(follow.id);
+            }
+
+            const followsFollowedUserId = await pb.collection('follows').getFullList({
+                filter: `followedUserId="${userId}"`,
+            })
+
+            // console.log("DELETE follows: ", follows);
+
+            for ( const follow of followsFollowedUserId) {
                 await pb.collection('follows').delete(follow.id);
             }
 

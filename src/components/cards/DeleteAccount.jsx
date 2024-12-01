@@ -24,6 +24,7 @@ export default function DeleteAccount({ isOpen, closeModal }) {
             await deleteAccount(user.id);
             console.log("Account deleted") 
             navigate('/');  
+            location.reload();
         } catch (e) {
             console.error("Failed to delete account", e);
         }

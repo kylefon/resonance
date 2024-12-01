@@ -95,12 +95,17 @@ export default function AlbumMain() {
                         <p>MORE</p>
                     </div>
                 </div>
-                <div>
-                  {popularProfiles.slice(0,3).map((profile, index) => (
-                    <NoAlbumReviewCard key={index} activities={popularAlbum[index]} userData={profile} />
-                  ))}
-                </div>
-              </div>
+                {popularProfiles.length > 0 ? (
+                  <div>
+                    {popularProfiles.slice(0,3).map((profile, index) => (
+                      <NoAlbumReviewCard key={index} activities={popularAlbum[index]} userData={profile} />
+                    ))}
+                  </div>
+                    ) : (
+                      <p className="header" style={{marginTop: "10px"}}>You have no reviews.</p>
+                    )
+                }
+                  </div>
               <div className='album-section'>
                 <div className='main-header'>
                     <div className='header'>

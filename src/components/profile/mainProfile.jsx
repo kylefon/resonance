@@ -71,7 +71,8 @@ export default function MainProfile({ setActiveTab, selectedAlbums, activities, 
                     <p>MORE</p>
                 </div>
             </div>
-            <div className="grid-album-container">
+            { data.length > 0 ? (
+                <div className="grid-album-container">
                 {data.slice(0,4).map((album, index) => {
                     if (isLoading) {
                         return (
@@ -82,10 +83,10 @@ export default function MainProfile({ setActiveTab, selectedAlbums, activities, 
                         <div className="favorite-album-main" key={index}>
                             {album ? (
                                 <img 
-                                    className="favorite-image-main"
-                                    src={album.trackData.images[0].url}
-                                    alt={album.trackData.name}
-                                    onClick={() => handleAlbumClick(album.albumId)}
+                                className="favorite-image-main"
+                                src={album.trackData.images[0].url}
+                                alt={album.trackData.name}
+                                onClick={() => handleAlbumClick(album.albumId)}
                                 /> 
                             ) : (
                                 <div className="favorite-album-null"></div>
@@ -94,6 +95,9 @@ export default function MainProfile({ setActiveTab, selectedAlbums, activities, 
                     )
                 })}
             </div>
+            ) : (
+                <p className="header">User has no reviews.</p>
+            )}
         </div>
     )
 
@@ -103,15 +107,17 @@ export default function MainProfile({ setActiveTab, selectedAlbums, activities, 
                 <div className='header'>
                     POPULAR REVIEWS
                 </div>
-                {/* <div className='more'>
-                    <p>MORE</p>
-                </div> */}
             </div>
-            <div>
+            {profiles.length > 0 ? (
+
+                <div>
                 {profiles.slice(0,3).map((profile, index) => (
                     <ReviewCard key={index} activities={userPopularReview[index]} userData={profile}/> 
                 ))}
             </div>
+            ) : (
+                <p className="header" style={{marginTop: "10px"}}>User has no reviews.</p>
+            )}
         </div>
     );
 

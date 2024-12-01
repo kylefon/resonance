@@ -126,7 +126,7 @@ export default function MainNetwork({ userId }) {
                   </Link>
                 ))
               ) : (
-                <p className="header" style={{marginTop: "10px"}}>You are not following any users.</p>
+                <p className="header" style={{marginTop: "10px"}}>User is not following any users.</p>
               )  
             )} 
             {activeTab === 'followers' && 
@@ -143,7 +143,7 @@ export default function MainNetwork({ userId }) {
                   </Link>
                 ))
               ) : (
-                <p className="header" style={{marginTop: "10px"}}>You have no followers.</p>
+                <p className="header" style={{marginTop: "10px"}}>User has no followers.</p>
               )  
             )} 
         </div>

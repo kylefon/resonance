@@ -14,11 +14,16 @@ export default function MainActivity({ activities, userData }) {
 
     const UserTab = () => (
         <div>
-            {data.map((activity, index) => (
-                <div key={index}>
+            {data.length > 0 ? (
+                data.map((activity, index) => (
+                    <div key={index}>
                     <ReviewCard activities={activity} userData={userData}/>
-                </div>
-            ))}
+                    </div>
+                ))
+            ) : (
+                <p className="header" style={{marginTop: "10px"}}>You have no reviews.</p>
+            )
+            }
         </div>
     )
     

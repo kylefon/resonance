@@ -21,20 +21,23 @@ export default function MainAlbums({ activities, userData }) {
                     REVIEWED FILMS
                 </div>
             </div>
-            <div className="main-album-container">
-                {data.map((activity, index) => (
-                    <div key={index}>
+            {data.length > 0 ? (
+                <div className="main-album-container">
+                    {data.map((activity, index) => (
+                        <div key={index}>
                         <Link to={`/${userData.username}/film/${activity.albumId}`}>
-                            <img src={activity.trackData.images[0].url} className="main-album-image"/>
+                        <img src={activity.trackData.images[0].url} className="main-album-image"/>
                         </Link>
                         <div className="album-review-icons">
-                            {activity.rating > 0 && <StarRating stars={activity.rating} color="#556677"/>}
-                            {activity.liked && <FaHeart />}
-                            {activity.reviewText && <LuText />}
+                        {activity.rating > 0 && <StarRating stars={activity.rating} color="#556677"/>}
+                        {activity.liked && <FaHeart />}
+                        {activity.reviewText && <LuText />}
                         </div>
-                    </div>
-                ))}
-            </div>
+                        </div>
+                    ))}
+                </div> ) : (
+                <p className="header">User has no reviews.</p>
+            )}
         </div>
     )
 }

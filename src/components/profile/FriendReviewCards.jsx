@@ -39,8 +39,8 @@ export const FriendReviewCards = ({ userId }) => {
 
     // Handle empty state
     if (!updatedActivities || updatedActivities.length === 0) {
-        return <div>No recent friend activity found.</div>;
-    }
+        return <div className="header" >No recent friend activity found.</div>;
+    } 
 
     return (
         <div>
