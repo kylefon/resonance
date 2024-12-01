@@ -12,9 +12,6 @@ export default function NewestAlbums() {
                 <div className='header'>
                     <p>NEWEST ALBUMS</p>
                 </div>
-                {/* <div className='more'>
-                    <p>MORE</p>
-                </div> */}
             </div>
             <div className='newest-content'>
                 {newAlbums.slice(0,10).map((album, index) => (

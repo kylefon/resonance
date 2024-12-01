@@ -41,9 +41,6 @@ export default function PopularReviews() {
                 <div className='header'>
                     <p>POPULAR REVIEWS</p>
                 </div>
-                <div className='more'>
-                    <p>MORE</p>
-                </div>
             </div>
             <RenderReview />
         </div>

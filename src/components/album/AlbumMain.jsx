@@ -91,9 +91,6 @@ export default function AlbumMain() {
                     <div className='header'>
                         <p>POPULAR REVIEWS</p>
                     </div>
-                    <div className='more'>
-                        <p>MORE</p>
-                    </div>
                 </div>
                 {popularProfiles.length > 0 ? (
                   <div>
@@ -102,7 +99,7 @@ export default function AlbumMain() {
                     ))}
                   </div>
                     ) : (
-                      <p className="header" style={{marginTop: "10px"}}>You have no reviews.</p>
+                      <p className="header" style={{marginTop: "10px"}}>No reviews yet.</p>
                     )
                 }
                   </div>
@@ -111,25 +108,16 @@ export default function AlbumMain() {
                     <div className='header'>
                         <p>RECENT REVIEWS</p>
                     </div>
-                    <div className='more'>
-                        <p>MORE</p>
-                    </div>
                 </div>
-                <div>
-                  {profiles.slice(0,5).map((profile, index) => ( // shows only 5 recent revoews
-                    <NoAlbumReviewCard key={index} activities={albumActivities[index]} userData={profile}/>
-                  ))}
-                </div>
-              </div>
-              <div className='album-section'>
-                <div className='main-header'>
-                    <div className='header'>
-                        <p>RELATED ARTISTS</p>
-                    </div>
-                    <div className='more'>
-                        <p>MORE</p>
-                    </div>
-                </div>
+                {profiles.length > 0 ? (
+                  <div>
+                    {profiles.slice(0,5).map((profile, index) => ( // shows only 5 recent revoews
+                      <NoAlbumReviewCard key={index} activities={albumActivities[index]} userData={profile}/>
+                    ))}
+                  </div> 
+                  ) : (
+                  <p className="header" style={{marginTop: "10px"}}>No reviews yet.</p>
+                )}
               </div>
             </div>
           </section>

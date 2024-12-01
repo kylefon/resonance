@@ -18,7 +18,8 @@ export const useFetchPopularAlbums = () => {
             };
 
             try {
-                const response = await fetch(`https://api.spotify.com/v1/playlists/37i9dQZEVXbMDoHDwVN2tF?fields=tracks.items(track(album(album_type,id,name,images)))`, options);
+                // Fetch Top 100: Global playlist made by Afrikan Radar
+                const response = await fetch(`https://api.spotify.com/v1/playlists/0sDahzOkMWOmLXfTMf2N4N?fields=tracks.items(track(album(album_type,id,name,images)))`, options);
                 if (!response.ok) {
                     throw new Error('Failed to fetch popular albums');
                 }
