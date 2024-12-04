@@ -17,9 +17,9 @@ export default function MainNetwork({ userId }) {
 
     useEffect(() => {
         const fetchFollowing = async () => {
-            console.log("User following id", userId)
+            // console.log("User following id", userId)
             const following = await userFollowing(userId);
-            console.log("User following", following)
+            // console.log("User following", following)
             setFollowing(following);
         }
         fetchFollowing();
@@ -27,10 +27,10 @@ export default function MainNetwork({ userId }) {
 
     useEffect(() => {
         const fetchFollowers = async () => {
-            console.log("User followers id", userId)
+            // console.log("User followers id", userId)
 
             const followers = await userFollowers(userId);
-            console.log("user followers ", followers)
+            // console.log("user followers ", followers)
             setFollowers(followers);
         }
         fetchFollowers();
@@ -40,11 +40,11 @@ export default function MainNetwork({ userId }) {
         const followerProfile = async () => {
             const getFollowers = await Promise.all(
                 followers.map((user) => {  
-                    console.log("getting user from user id follower profile", user)
+                    // console.log("getting user from user id follower profile", user)
                     return getUserFromUserId(user.userId)
                 })
             )
-            console.log("follower profile ", getFollowers);
+            // console.log("follower profile ", getFollowers);
             setFollowerData(getFollowers.filter(Boolean));
         }
         if (followers.length > 0) followerProfile();
@@ -54,11 +54,11 @@ export default function MainNetwork({ userId }) {
         const followingProfile = async () => {
             const getFollowing = await Promise.all(
                 following.map((user) => {  
-                    console.log("getting user from user id following profile", user)
+                    // console.log("getting user from user id following profile", user)
                     return getUserFromUserId(user.followedUserId)
                 })
             )
-            console.log("get following ", getFollowing)
+            // console.log("get following ", getFollowing)
             setFollowingData(getFollowing.filter(Boolean));
         }
         if (following.length > 0) followingProfile();

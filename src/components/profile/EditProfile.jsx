@@ -22,7 +22,7 @@ export default function EditProfile() {
 
     
     const { register, handleSubmit, reset, formState: {errors}, getValues} = useForm();
-    const { user, changePassword, changeUsername, changeAvatar, avatarUrl, removeProfile, addFavoriteAlbum } = usePocket();
+    const { pb, user, changePassword, changeUsername, changeAvatar, avatarUrl, removeProfile, addFavoriteAlbum } = usePocket();
     
     const { selectedAlbums, setSelectedAlbums } = useFetchFavoriteAlbums(user.id);
     
@@ -91,8 +91,8 @@ export default function EditProfile() {
     if (isLoading) {
         return <Loading />
     }
-    
-    return (
+ 
+    const MainContent = () => (
         <div className='edit-profile-container'>
             <form onSubmit={handleSubmit(onSubmit)}>
                 {isError && <p>Error changing account</p>}
@@ -223,5 +223,15 @@ export default function EditProfile() {
             <FavoriteAlbumSearch isOpen={filmModal} closeModal={handleClose} onAlbumSelect={handleAlbumSelect} />
             <DeleteAccount isOpen={deleteModal} closeModal={closeDeleteModal}/>
         </div>
+    )
+
+    return (
+        <>
+            { !pb.authStore.isValid ? (
+                <p>Not logged in. Logged in first.</p>
+            ) : (
+                <MainContent />
+            )}
+        </>
     )
 }

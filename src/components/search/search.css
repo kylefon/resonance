@@ -6,6 +6,12 @@
     width: 100%;
 }
 
+@media screen and (max-width: 768px) {
+    .searched-results-container {
+        flex-direction: column-reverse;   
+    }
+}
+
 .searched-results {
     flex: 8;
 }
@@ -17,6 +23,14 @@
     padding: 15px 0px;
     border-bottom: 1px solid #99AABB; 
     display: flex;  
+}
+
+@media screen and (max-width: 425px) {
+    .search-item {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }   
 }
 
 .artist-content {

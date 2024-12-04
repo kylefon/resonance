@@ -8,16 +8,16 @@
 }
 }
 .main-content {
-    flex: 1;
     display: flex;
     justify-content: center;
     width: 100%;
+    max-width: 950px;
+    align-items: center;
+    box-sizing: border-box;
 }
 
-
-/* .main-content {
-    width: 950px;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 100px;
-} */
+@media screen and (max-width: 768px) {
+    .main-content {
+        padding: 0px 20px;
+    }
+}

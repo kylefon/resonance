@@ -163,12 +163,14 @@ export default function Profile() {
         return (
         <div className='profile-header'>
             <div className='profile-text'>
-                <img 
-                    src={userData.avatarUrl || '/default-profile.png'}
-                    alt="profile image"
-                    className='profile-image'
-                />
-                <div className='profile-username'>{userData.username}</div>
+                <div className='profile-text-container'>
+                    <img 
+                        src={userData.avatarUrl || '/default-profile.png'}
+                        alt="profile image"
+                        className='profile-image'
+                        />
+                    <div className='profile-username'>{userData.username}</div>
+                </div>
                 <div>
                     <RenderFollowButtons /> 
                 </div>

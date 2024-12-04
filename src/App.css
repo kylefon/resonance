@@ -25,3 +25,9 @@
     font-size: 11px;
     color: #667788;
 }
+
+main {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}

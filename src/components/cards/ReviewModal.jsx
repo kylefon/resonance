@@ -102,59 +102,61 @@ export default function ReviewModal({
                 <img src={trackData.images[1].url} alt={trackData.name}/>
                 <div className="modal-review-container">
                     <form className="review-form" onSubmit={handleSubmit(onSubmit)}>
-                        <header>
-                            <p className="header-listen">I LISTENED TO...</p>
-                            <p className="header-name">{trackData.name}</p>
-                            <textarea 
-                                placeholder="Add a review..."
-                                {...register(
-                                    "reviewText"
-                                )}
-                            ></textarea>
-                            {errors.reviewText && <p className="error-text">{errors.reviewText.message}</p>}
-                        </header>
-                        <section className="rating-like">
-                            <div className="modal-rating">
-                                <p>Rating</p>
-                                <div className="rating-stars">
-                                    {numStars.map((num) => (
-                                        <label 
+                        <div>
+                            <header>
+                                <p className="header-listen">I LISTENED TO...</p>
+                                <p className="header-name">{trackData.name}</p>
+                                <textarea 
+                                    placeholder="Add a review..."
+                                    {...register(
+                                        "reviewText"
+                                    )}
+                                    ></textarea>
+                                {errors.reviewText && <p className="error-text">{errors.reviewText.message}</p>}
+                            </header>
+                            <section className="rating-like">
+                                <div className="modal-rating">
+                                    <p>Rating</p>
+                                    <div className="rating-stars">
+                                        {numStars.map((num) => (
+                                            <label 
                                             key={num} 
                                             htmlFor={`star${num}`}
                                             className="rating" 
                                             onMouseEnter={() => setHover(num)} 
                                             onMouseLeave={() => setHover(0)}
                                             onClick={() => setValue("rating", num)}
-                                        >    
-                                            <input 
-                                                type="radio" 
-                                                name="rating"
-                                                id={`star${num}`} 
-                                                value={getValues("rating")}
-                                                {...register("rating")}
-                                            />
-                                            <FaStar color={hover >= num || getValues("rating") >= num ? "gold" : "#2c3641"}/>
-                                        </label>
-                                    ))}
+                                            >    
+                                                <input 
+                                                    type="radio" 
+                                                    name="rating"
+                                                    id={`star${num}`} 
+                                                    value={getValues("rating")}
+                                                    {...register("rating")}
+                                                    />
+                                                <FaStar color={hover >= num || getValues("rating") >= num ? "gold" : "#2c3641"}/>
+                                            </label>
+                                        ))}
+                                    </div>
+                                    {errors.rating && <p className="error-text">{errors.rating.message}</p>}
                                 </div>
-                                {errors.rating && <p className="error-text">{errors.rating.message}</p>}
-                            </div>
-                            <div className="modal-like">
-                                <div className="like" onClick={() => { setLike(prev => !prev);}}>
-                                    {like ? (
-                                        <>
-                                            <p>Liked</p>
-                                            <FaHeart size={20} color="red" className="heart-icon" />
-                                        </>
-                                    ) : (
-                                        <>
-                                            <p>Like</p>
-                                            <FaHeart size={20} color="rgb(44, 54, 65)" className="heart-icon" />
-                                        </>
-                                    )}
+                                <div className="modal-like">
+                                    <div className="like" onClick={() => { setLike(prev => !prev);}}>
+                                        {like ? (
+                                            <>
+                                                <p>Liked</p>
+                                                <FaHeart size={20} color="red" className="heart-icon" />
+                                            </>
+                                        ) : (
+                                            <>
+                                                <p>Like</p>
+                                                <FaHeart size={20} color="rgb(44, 54, 65)" className="heart-icon" />
+                                            </>
+                                        )}
+                                    </div>
                                 </div>
-                            </div>
-                        </section>
+                            </section>
+                        </div>
                         <footer className="submit-button" type="submit" >
                             <button disabled={isLoading}>SUBMIT</button>
                         </footer>

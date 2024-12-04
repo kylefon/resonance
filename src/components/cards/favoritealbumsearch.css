@@ -15,13 +15,15 @@
     transform: translate(-50%, -50%);
     padding: 20px;
     z-index: 1001;
-    width: 360px;
+    width: 320px;
     background-color: #445566; 
-    border-radius: 3px
+    border-radius: 3px;
+    box-sizing: border-box;
 }
 
 
 .film-input-container {
+    position: relative;
     width: 100%;
 }
 
@@ -34,6 +36,7 @@ h1 {
     font-size: 15px;
     color: #99AABB;
     margin-bottom: 20px;
+    margin-right: 15px;
 }
 
 .film-title {
@@ -45,12 +48,13 @@ h1 {
 .film-input {
     background-color: #CCDDEE;
     padding: 10px;
-    width: 95%;
+    width: 100%;
+    box-sizing: border-box;
     border-radius: 3px;
 }
 
 .search-results {
-    width: 362px;
+    position: absolute;
     max-height: 200px;
     overflow-y: auto; 
     z-index: 99999;

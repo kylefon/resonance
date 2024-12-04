@@ -24,7 +24,7 @@ export default function ArtistMain() {
 
     return (
         <div className='artist-wrapper'>
-            <section className='main-content'>
+            <section className='artist-page-content'>
                 <p className='albums-by'>ALBUMS BY</p>
                 <p className='artist-name'>{artistData.name}</p>
                 <div className='artist-albums-wrapper'>
@@ -32,8 +32,7 @@ export default function ArtistMain() {
                         {albumData.items.filter(album => album.album_type === "album").map((albums) => (
                             <Link to={`/album/${albums.id}`} key={albums.id}>
                                 <div className='album-images'>
-                                    {/* <p>{albums.name}</p> */}
-                                        <img src={albums.images[1].url} alt={albums.name}/>
+                                    <img src={albums.images[1].url} alt={albums.name}/>
                                 </div>
                             </Link>
                         ))}
@@ -41,11 +40,13 @@ export default function ArtistMain() {
                 </div>
             </section>
             <section className='artist-visual'>
-                <img src={artistData.images[1].url} className='artist-image' alt={artistData.name}/>
-                <div className='artist-genre'>
-                    {artistData.genres.map((genres, index) => (
-                        <p key={index}>{genres.toUpperCase()}</p>
-                    ))}
+                <div>
+                    <img src={artistData.images[1].url} className='artist-image' alt={artistData.name}/>
+                    <div className='artist-genre'>
+                        {artistData.genres.map((genres, index) => (
+                            <p key={index}>{genres.toUpperCase()}</p>
+                        ))}
+                    </div>
                 </div>
             </section>
         </div>

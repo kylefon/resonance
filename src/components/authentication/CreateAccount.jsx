@@ -95,6 +95,7 @@ export default function CreateAccount({ isOpen, closeModal }) {
                         <input
                             name="email"
                             type="text"
+                            autoComplete='email'
                             {...register("email", { required: "Email is required" })}
                         />
                         {errors.email && <span className='header-listen'>{errors.email.message}</span>}
@@ -103,6 +104,7 @@ export default function CreateAccount({ isOpen, closeModal }) {
                         <input
                             name="username"
                             type="text"
+                            autoComplete='username'
                             {...register("username", { required: "Username is required" })}
                         />
                         {errors.username && <span className='header-listen'>{errors.username.message}</span>}
@@ -111,6 +113,7 @@ export default function CreateAccount({ isOpen, closeModal }) {
                         <input
                             name="password"
                             type="password"
+                            autoComplete='new-password'
                             {...register("password", {
                                 required: "Password is required",
                                 minLength: {
@@ -125,6 +128,7 @@ export default function CreateAccount({ isOpen, closeModal }) {
                         <input
                             name="passwordConfirm"
                             type="password"
+                            autoComplete='new-password'
                             {...register("passwordConfirm", {
                                 required: "Please confirm your password",
                                 validate: (value) =>

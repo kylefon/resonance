@@ -1,14 +1,21 @@
 .review-new-wrapper {
     display: flex;
+    flex-wrap: wrap;
+    align-items: start;
     justify-content: space-between;
-    width: 950px;
+    max-width: 950px;
     padding-top: 30px;
+    gap: 5rem;
 }
 
 
 .review-wrapper {
-    width: 630px;
+    width: 100%;
+    flex-basis: 630px;
+    flex-grow: 9999;
 }
 .newest-wrapper {
-    width: 230px;
+    width: 100%;
+    flex-basis: 230px;
+    flex-grow: 1;
 }

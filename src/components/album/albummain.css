@@ -1,22 +1,33 @@
 .album-section-wrapper {
-    width: 950px;
+    max-width: 950px;
     padding-top: 60px;
 }
 
 .album-main-container {
     display: flex;
+    flex-wrap: wrap;
+    align-items: start;
+    justify-content: center;
     width: 100%;
     margin-bottom: 64px;
+    gap: 3rem;
 }
 
 .album-info-section {
     width: 100%;
+    flex-basis: 430px;
+    flex-grow: 1;
+}
+
+.album-image-section {
+    max-width: 460px;
+    flex-basis: 460px;
+    flex-grow: 9999;
 }
 
 .album-image {
-    width: 460px;
+    width: 100%;
     border-radius: 5px;
-    margin-right: 50px;
 }
 
 .album-name {

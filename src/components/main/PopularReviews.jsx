@@ -22,7 +22,7 @@ export default function PopularReviews() {
     const ReviewContent = () => (
         <div className='review-bottom'>
             {profiles.slice(0,3).map((profile, index) => (
-                <ReviewCard activities={allPopular[index]} userData={profile}/> 
+                <ReviewCard key={index} activities={allPopular[index]} userData={profile}/> 
             ))}
         </div>
     )

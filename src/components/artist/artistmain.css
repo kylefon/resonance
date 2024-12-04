@@ -1,8 +1,15 @@
 .artist-wrapper {
     display: flex;
-    justify-content: space-between;
-    width: 950px;
+    flex-wrap: wrap-reverse;
+    justify-content: center;
+    max-width: 950px;
     margin: 30px 0px;
+    gap: 3rem;
+}
+
+.artist-page-content {
+    width: 100%;
+    max-width: 670px;
 }
 
 .albums-by {
@@ -16,15 +23,21 @@
     margin-bottom: 20px;
 }
 
+.artist-album-wrapper {
+    width: 100%;
+}
+
 .artist-albums {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    width: 670px;
-    gap: 12px;
+    grid-template-columns: repeat(auto-fill, minmax(215px, 1fr));
+    gap: 0.5rem;
+    width: 100%;
 }
 
 .artist-visual {
     width: 230px;
+    display: flex;
+    justify-content: center;
 }
 
 .artist-image {
@@ -32,8 +45,15 @@
     margin-bottom: 20px;
 }
 
+.album-images {
+    display: flex;
+    justify-content: center;
+}
+
 .album-images > img {
-    width: 100%;
+    width: 215px;
+    height: auto;
+    max-width: 100%;
 }
 
 .artist-genre {

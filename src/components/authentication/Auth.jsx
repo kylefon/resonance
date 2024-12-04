@@ -27,20 +27,13 @@ export default function Auth({ isOpen, closeModal }) {
         }
     };
 
-        // return (
-        //     <>
-        //         <h1>Logged In: {pb.authStore.model.email}</h1>;
-        //         <button onClick={logout}>Log Out</button>
-        //     </>
-        // );
-
     if (isLoading) {
         return <Loading />
     }
 
     return (
         <div className="auth-container">
-            {isError && <p>Inval email or password</p>}
+            {isError && <p>Invalid email or password</p>}
             <button className="cancel-auth-button" onClick={closeModal}>
                 <IoMdClose className="modal-button"/>
             </button>
@@ -48,13 +41,14 @@ export default function Auth({ isOpen, closeModal }) {
                 <div className="form-input-container">
                     <div className="form-input">
                         <label htmlFor="email" >Email</label>
-                        <input type="text" name="email" {...register("email")}/>
+                        <input className="form-input-style" type="text" name="email" {...register("email")}/>
                     </div>
                     <div className="form-input">
                         <label htmlFor="password">Password</label>
                         <input 
                             type="password"
                             name="password" 
+                            className="form-input-style"
                             {...register("password")}
                             />
                     </div>

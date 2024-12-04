@@ -46,17 +46,6 @@ export default function RatingCard() {
     return (
         <div className="rating-card-wrapper">
             <div className="rating-icons" >
-                {/* <div className="ear-icon" onClick={() => setListen(!listen)}>
-                    {!listen ? 
-                    <>
-                        <IoEarOutline size={20} />
-                        <p>Listen</p>
-                    </> : <>
-                        <IoEar size={20} color="green"/>
-                        <p>Listened</p>
-                    </>
-                    }
-                </div> */}
                 <div className="heart-icon" onClick={() => setLike(!like)}>
                     {!like ? 
                     <>

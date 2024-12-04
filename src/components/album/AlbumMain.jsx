@@ -1,6 +1,5 @@
 import { Link, useParams } from 'react-router-dom';
 import RatingCard from '../cards/RatingCard'
-import './albummain.css'
 import { useTrackData } from '../../context/TrackDataContext';
 import { useEffect, useState } from 'react';
 import Loading from '../loading/Loading';
@@ -8,6 +7,7 @@ import { useFetchRecentAlbumActivities } from '../../hooks/useFetchRecentAlbumAc
 import { useFetchMultipleProfileData } from '../../hooks/useFetchMultipleProfileData';
 import NoAlbumReviewCard from '../cards/NoAlbumReviewCard';
 import { useFetchPopularAlbumActivities } from '../../hooks/useFetchPopularAlbumActivities';
+import './albummain.css'
 
 export default function AlbumMain() {
 

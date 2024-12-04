@@ -152,7 +152,7 @@ export const PocketProvider = ({ children }) => {
                 filter: `userId = "${userId}"`,
             });
 
-            console.log("CURRENT FAVORITES:", currentFavorites);
+            // console.log("CURRENT FAVORITES:", currentFavorites);
 
 
             const deletePromise = currentFavorites.map((album) => 
@@ -212,14 +212,14 @@ export const PocketProvider = ({ children }) => {
                         rating,
                         liked
                     });
-                console.log("Review updated: ", updatedReview);
+                // console.log("Review updated: ", updatedReview);
                 return updatedReview;
             } else {
-                console.log("review does not exist")
+                // console.log("review does not exist")
                 const newReview = await pb.collection('reviews').create({
                     userId, albumId, reviewText, rating, liked
                 })
-                console.log("Review created: ", newReview);
+                // console.log("Review created: ", newReview);
                 return newReview;
             }
         } catch (e) {
@@ -302,7 +302,7 @@ export const PocketProvider = ({ children }) => {
             });
 
             if (response.length === 0) {
-                console.log("No matching follow record found");
+                console.error("No matching follow record found");
                 return;
             }
 
@@ -366,7 +366,7 @@ export const PocketProvider = ({ children }) => {
                 filter: `userId="${userId}"`
             })
 
-            console.log("userFollowing context", response);
+            // console.log("userFollowing context", response);
 
             return response;
         } catch (e) {
@@ -393,7 +393,7 @@ export const PocketProvider = ({ children }) => {
                 filter: `followedUserId="${userId}"`
             })
 
-            console.log("user followers context ", response)
+            // console.log("user followers context ", response)
 
             return response;
         } catch (e) {
@@ -404,12 +404,12 @@ export const PocketProvider = ({ children }) => {
 
     const getUserFromUserId = async (followedUserId) => {
         try {
-            console.log("followedUserId getUserFromId", followedUserId)
+            // console.log("followedUserId getUserFromId", followedUserId)
             const userDetails = await pb.collection('users').getFullList({
                 filter: `id="${followedUserId}"`
             })
 
-            console.log("getUserFromUserId response ", userDetails);
+            // console.log("getUserFromUserId response ", userDetails);
             return userDetails;
         } catch (e) {
             console.error(`Failed to get user details for userFollowing=${user.followedUserId}`, e)
@@ -471,7 +471,7 @@ export const PocketProvider = ({ children }) => {
             });
 
             if (response.length === 0) {
-                console.log("No matching follow record found when trying to unlike review");
+                console.error("No matching follow record found when trying to unlike review");
                 return;
             }
 

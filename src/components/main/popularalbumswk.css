@@ -18,7 +18,8 @@
 
 .carousel-wrapper {
     overflow: hidden; 
-    width: 950px;
+    max-width: 950px;
+    width: 100%;
 }
 
 .albums-image-container {
@@ -27,10 +28,11 @@
 }
 
 .albums-image {
-    width: 230px; 
+    max-width: 230px; 
     height: 100%; 
     margin-right: 10px; 
-    transition: border 0.1s ease
+    transition: border 0.1s ease;
+    scroll-snap-align: start;
 }
 
 .albums-image:hover {
@@ -53,4 +55,38 @@
 
 .chevron-button:hover .chevrons {
     color: white;
+}
+
+@media screen and (max-width: 1024px) {
+    .albums-container {
+        height: 100%;
+        width: 100%;
+        overflow-x: auto; 
+        justify-content: flex-start; 
+    }
+
+    .carousel-wrapper {
+        display: flex;
+        gap: 1em;
+        width: 100%;
+        overflow-x: auto; /* Ensure scrolling */
+        scroll-snap-type: x mandatory; /* Allow snapping */
+    }
+
+    .albums-image-container {
+        display: flex;
+        gap: 10px;
+        scroll-snap-type: x mandatory;
+    }
+
+    .albums-image {
+        max-width: 230px; 
+        height: 100%; 
+        transition: border 0.1s ease;
+        scroll-snap-align: start;
+    }
+
+    .chevron-button {
+        display: none; /* Hide chevrons on mobile */
+    }
 }

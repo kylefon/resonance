@@ -1,6 +1,7 @@
+import { forwardRef } from 'react';
 import './favoritealbumsearch.css';
 
-export default function SearchResults({ results, onSelect, style }) {
+const SearchResults = forwardRef(({ results, onSelect, style }, ref) => {
     if (!results || results.length === 0) return null;
 
     return (
@@ -19,4 +20,6 @@ export default function SearchResults({ results, onSelect, style }) {
             ))}
         </ul>
     );
-}
+});
+
+export default SearchResults;

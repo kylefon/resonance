@@ -1,8 +1,10 @@
 .main-content {
-    width: 950px;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 100px;
+  padding: 0px 50px;
+  width:100%;
+  max-width: 950px;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 100px;
 }
 
 a, .link {
@@ -11,4 +13,12 @@ a, .link {
   
 a:visited, a:active, a:focus {
   color: inherit; 
+}
+
+
+@media screen and (max-width: 768px) {
+  .main-content {
+      padding: 0px 20px;
+      box-sizing: border-box;
+  }
 }

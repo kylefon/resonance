@@ -4,6 +4,37 @@
     align-items: end;
 }
 
+@media screen and (max-width: 450px) {
+    .auth-container { 
+        width: 100%;
+        padding: 0 20px;
+    }
+    .form-container {
+        flex-wrap: wrap;
+    }
+
+    .form-input-container {
+        flex-wrap: wrap;
+    }
+
+    .form-input {
+        width: 100%;
+    }
+
+    .form-input-style {
+        width: 100% !important;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .dropdown-auth{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 20px
+    }
+}
+
 .cancel-auth-button {
     border: none;
     outline: none;

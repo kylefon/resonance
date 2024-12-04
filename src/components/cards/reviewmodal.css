@@ -14,6 +14,19 @@ dialog {
 .review-modal {
     width: 808px;
 }
+
+@media screen and (max-width: 550px) {
+    .modal-content {
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+
+    .review-form {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+}
   
 dialog::backdrop {
     background: rgba(0, 0, 0, 0.4);
@@ -57,6 +70,7 @@ header {
 }
 
 textarea {
+    box-sizing: border-box;
     min-height: 90px;
     padding: 7px 10px;
     margin-bottom: 15px;
